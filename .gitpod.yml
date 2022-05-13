@@ -15,6 +15,12 @@ vscode:
   extensions:
     - svelte.svelte-vscode
 
+    - mhutchie.git-graph
+
+    - GraphQL.vscode-graphql
+
+    - fivethree.vscode-svelte-snippets
+
 github:
   prebuilds:
     master: true
