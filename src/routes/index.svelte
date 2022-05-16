@@ -1,9 +1,11 @@
 <script>
 
 import {min} from 'simple-statistics'
-import { LayerCake } from 'layercake';
+//import { LayerCake } from 'layercake';
+import LayerCake from './../../node_modules/layercake/LayerCake.svelte';
+import Svg from './../../node_modules/layercake/layouts/Svg.svelte';
 
-let abc =  [1, 5, -10, 100, 2, -30];
+let abc =  [1, 5, -10, 100, 2, -30, -40];
 const xyz = min(abc); // => -10
 
 const points = [
@@ -13,7 +15,6 @@ const points = [
   {x: 15, y: 30},
   {x: 20, y: 40}
 ];
-
 
 </script>
 
