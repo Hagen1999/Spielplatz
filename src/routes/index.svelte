@@ -5,7 +5,7 @@ import {min} from 'simple-statistics'
 let abc =  [1, 5, 10, 100, 20, 25, 30];
 const xyz = min(abc); // => -10
 
-
+import Kuchendiagramm from './kuchendiagramm.svelte';
 import Pie from "svelte-chartjs/src/Pie.svelte"
 
 let data = {
@@ -46,3 +46,4 @@ let options = {
 <div> Das Ergebnis "Min" lautet: {xyz} </div>
 
 <div><Pie {data} {options}/></div>
+<Kuchendiagramm />
