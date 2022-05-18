@@ -12,12 +12,15 @@
     import {datenreihe1} from '../speicher/store'
     import {datenreihe2} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
+    import Eingabeformular from '../komponenten/Eingabeformular.svelte';
+    //import {eingegebeneDaten} from '../komponenten/Eingabeformular.svelte';
+    //import datenEingabefeld from '../komponenten/Eingabeformular.svelte';
  
 
     // Meine Variablen
     let abc =  $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
     let def =  $datenreihe2; // die externe Referenz auf die zweiten Rohwerte im Store
-
+    //let ghi =  datenEingabefeld;
 
     // Berechnungen
     let mengeDerZahlen = abc.length; // hier wird die Länge des ersten Arrays rückgemeldet
@@ -61,6 +64,7 @@
     <div> Der berechnete Regressionskoeefizient R^2 (b) lautet: {resultat_regr_str.b} % (= Effektstärke)</div>
     <br/>
 </div>
+<Eingabeformular>Das Formular...</Eingabeformular>
 <Kuchendiagramm>Verteilung der ABC-Reihe (externe Diagramm-Komponente):</Kuchendiagramm>
 
 
