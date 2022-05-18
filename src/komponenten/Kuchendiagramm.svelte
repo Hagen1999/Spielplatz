@@ -1,12 +1,15 @@
 <script>
 
 import Pie from "svelte-chartjs/src/Pie.svelte"
-    
+import {tortenfarben1} from '../speicher/store'
+import {datenreihe1} from '../speicher/store'
+
     let data = {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+      //labels: ["Red", "Green", "Yellow", "Grey", "Dunkelgrau"],
+      labels: $tortenfarben1, // => VAR der Legende wird aus dem zentralen Store geladen
       datasets: [
         {
-          data: [1,2,3,4,5,6],
+          data: $datenreihe1, // => Datenwerte werden aus dem zentralen Store geladen
           backgroundColor: [
             "#F7464A",
             "#46BFBD",
@@ -32,3 +35,8 @@ import Pie from "svelte-chartjs/src/Pie.svelte"
     }
     
     </script>
+
+    <div>    
+      <slot></slot>
+      <div><Pie {data} {options} /></div>
+    </div>

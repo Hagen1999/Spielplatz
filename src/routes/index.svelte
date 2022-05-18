@@ -1,49 +1,27 @@
 <script>
 
 import {min} from 'simple-statistics'
+import {mean} from 'simple-statistics'
 
-let abc =  [1, 5, 10, 100, 20, 25, 30];
-const xyz = min(abc); // => -10
-
-import Kuchendiagramm from './kuchendiagramm.svelte';
+import {datenreihe1} from '../speicher/store'
+import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
 import Pie from "svelte-chartjs/src/Pie.svelte"
 
-let data = {
-  labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-  datasets: [
-    {
-      data: abc,
-      backgroundColor: [
-        "#F7464A",
-        "#46BFBD",
-        "#FDB45C",
-        "#949FB1",
-        "#4D5360",
-        "#AC64AD"
-      ],
-      hoverBackgroundColor: [
-        "#FF5A5E",
-        "#5AD3D1",
-        "#FFC870",
-        "#A8B3C5",
-        "#616774",
-        "#DA92DB"
-      ]
-    }
-  ]
-};
-
-let options = {
-  responsive: true
-}
-
+let abc =  $datenreihe1; // die externe Referenz auf die Rohwerte im Store
+const mein_minwert = min(abc); // Minimalwert der Datenreihe
+const mein_mittelwert = mean(abc); // Minimalwert der Datenreihe
 
 </script>
 
-<h1>Welcome to SvelteKit by svs2</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<div> Das Array besteht aus: {abc} </div>
-<div> Das Ergebnis "Min" lautet: {xyz} </div>
+<svelte:head><title>Testseite sv - Berechnung: {mein_minwert}</title></svelte:head>
 
-<div><Pie {data} {options}/></div>
-<Kuchendiagramm />
+<h1>Welcome to SvelteKit by svs2: Formelresultat {mein_minwert}</h1>
+<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+
+<div> Die Datenreihe des zentralen Speichers lautet: {$datenreihe1} </div>
+<div> Das lokale ABC-Array als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
+<br/>
+<div> Das berechnete "Min"-Ergebnis (der kleinste Wert) des ABC-Arrays lautet: {mein_minwert} </div>
+<div> Der berechnete Mitelwert des ABC-Arrays lautet: {mein_mittelwert} </div>
+<br/>
+<Kuchendiagramm>Hier wird das Diagramm als externe Komponente eingebunden:</Kuchendiagramm>
