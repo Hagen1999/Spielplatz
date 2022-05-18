@@ -3,9 +3,9 @@ tasks:
   - init: npm install
     command: |
       export HMR_HOST=`gp url 3000`
+      npm install --save simple-statistics
+      npm i svelte-chartjs
       npm run dev
-  - init: npm install --save simple-statistics
-  - init: npm i svelte-chartjs
 
 ports:
   - port: 3000
