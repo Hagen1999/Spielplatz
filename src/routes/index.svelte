@@ -11,16 +11,14 @@
     // Interne Komponenten
     import {datenreihe1} from '../speicher/store'
     import {datenreihe2} from '../speicher/store'
+    import {datenreihe3} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
-    //import {eingegebeneDaten} from '../komponenten/Eingabeformular.svelte';
-    //import datenEingabefeld from '../komponenten/Eingabeformular.svelte';
  
-
     // Meine Variablen
-    let abc =  $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
-    let def =  $datenreihe2; // die externe Referenz auf die zweiten Rohwerte im Store
-    //let ghi =  datenEingabefeld;
+    let abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
+    let def = $datenreihe2; // die externe Referenz auf die zweiten Rohwerte im Store
+    let ghi = $datenreihe3;
 
     // Berechnungen
     let mengeDerZahlen = abc.length; // hier wird die Länge des ersten Arrays rückgemeldet
@@ -48,9 +46,11 @@
 <div class="textblock">
     <div> Die erste Datenreihe des zentralen Speichers lautet: {$datenreihe1} </div>
     <div> Die zweite Datenreihe des zentralen Speichers lautet: {$datenreihe2} </div>
+    <div> Die dritte Datenreihe des zentralen Speichers lautet: {$datenreihe3} </div>
     <br/>
     <div> Das lokale ABC-Array als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
     <div> Das lokale DEF-Array als Verknüpfung zum zentralen Speicher lautet: {def} </div>
+    <div> Das lokale GHI-Array als Verknüpfung zum zentralen Speicher lautet: {ghi} </div>
     <br/>
     <div> Das berechnete "Min"-Ergebnis (der kleinste Wert) des ABC-Arrays lautet: {mein_minwert} </div>
     <div> Das berechnete "Max"-Ergebnis (der größte Wert) des ABC-Arrays lautet: {mein_maxwert} </div>
