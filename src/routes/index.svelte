@@ -7,50 +7,45 @@
     // Externe Module
     import * as ss from 'simple-statistics'
 
-
     // Interne Komponenten
     import {datenreihe1} from '../speicher/store'
-    import {datenreihe2} from '../speicher/store'
     import {datenreihe3} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
  
     // Meine Variablen
-    let abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
-    let def = $datenreihe2; // die externe Referenz auf die zweiten Rohwerte im Store
-    let ghi = $datenreihe3;
+    $: abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
+    $: ghi = $datenreihe3;
 
     // Berechnungen
-    let mengeDerZahlen = abc.length; // hier wird die Länge des ersten Arrays rückgemeldet
+    $: mengeDerZahlen = abc.length; // hier wird die Länge des ersten Arrays rückgemeldet
 
-    const mein_minwert = ss.min(abc); // Minimalwert der Datenreihe 1
-    const mein_maxwert = ss.max(abc); // Maximalwert der Datenreihe 1
-    const mein_mittelwert = ss.mean(abc); // Mittelwert der Datenreihe 1
-    const mein_median = ss.median(abc); // Median der Datenreihe 1
-    const meine_summe = ss.sum(abc); // Summenwert der Datenreihe 1
-    const mein_sdwert = ss.standardDeviation(abc); // Standardabweichung der Datenreihe 1
+    $: mein_minwert = ss.min(ghi); // Minimalwert der Datenreihe 1
+    $: mein_maxwert = ss.max(ghi); // Maximalwert der Datenreihe 1
+    $: mein_mittelwert = ss.mean(ghi); // Mittelwert der Datenreihe 1
+    $: mein_median = ss.median(ghi); // Median der Datenreihe 1
+    $: meine_summe = ss.sum(ghi); // Summenwert der Datenreihe 1
+    $: mein_sdwert = ss.standardDeviation(ghi); // Standardabweichung der Datenreihe 1
 
     // Regressionsanalyse
-    const meine_regression = ss.linearRegression([abc, def]); // die eigentliche Regressionsberechnung
-    const resultat_regr = JSON.stringify(meine_regression); // hier wird das Ergebnis zum JSON-Objekt
-    const resultat_regr_str = JSON.parse(resultat_regr); // hier wird das JSON-Objekt zum geparsten String
+    $: meine_regression = ss.linearRegression([abc, ghi]); // die eigentliche Regressionsberechnung
+    $: resultat_regr = JSON.stringify(meine_regression); // hier wird das Ergebnis zum JSON-Objekt
+    $: resultat_regr_str = JSON.parse(resultat_regr); // hier wird das JSON-Objekt zum geparsten String
 
 </script>
 
 
-<svelte:head><title>Testwerte: {abc}</title></svelte:head>
+<svelte:head><title>Testwerte: {ghi}</title></svelte:head>
 
 <h1>Testberechnungen </h1>
 <h2>Zwei Zahlenreihen mit {mengeDerZahlen} Werten</h2>
 
 <div class="textblock">
-    <div> Die erste Datenreihe des zentralen Speichers lautet: {$datenreihe1} </div>
-    <div> Die zweite Datenreihe des zentralen Speichers lautet: {$datenreihe2} </div>
-    <div> Die dritte Datenreihe des zentralen Speichers lautet: {$datenreihe3} </div>
+    <div> Die statische Datenreihe (1) des zentralen Speichers lautet: {$datenreihe1} </div>
+    <div> Die dynamische Datenreihe (3) des zentralen Speichers lautet: {$datenreihe3} </div>
     <br/>
-    <div> Das lokale ABC-Array als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
-    <div> Das lokale DEF-Array als Verknüpfung zum zentralen Speicher lautet: {def} </div>
-    <div> Das lokale GHI-Array als Verknüpfung zum zentralen Speicher lautet: {ghi} </div>
+    <div> Das lokale STAT-Array (abc) als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
+    <div> Das lokale DYN-Array (ghi) als Verknüpfung zum zentralen Speicher lautet: {ghi} </div>
     <br/>
     <div> Das berechnete "Min"-Ergebnis (der kleinste Wert) des ABC-Arrays lautet: {mein_minwert} </div>
     <div> Das berechnete "Max"-Ergebnis (der größte Wert) des ABC-Arrays lautet: {mein_maxwert} </div>
