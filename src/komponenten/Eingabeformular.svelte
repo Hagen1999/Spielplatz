@@ -1,21 +1,18 @@
 <script>
+
     import {datenobjekt} from '../speicher/store';
     import {datenreihe3} from '../speicher/store';
 
-    $datenreihe3[0] = $datenobjekt.x1;
-    $datenreihe3[1] = $datenobjekt.x2;
-    $datenreihe3[2] = $datenobjekt.x3;
-    $datenreihe3[3] = $datenobjekt.x4;
-    $datenreihe3[4] = $datenobjekt.x5;
-    $datenreihe3[5] = $datenobjekt.x6;
-
     const speicherformular = () => {
-        if ($datenobjekt.x1 >0) {
-            return ($datenobjekt.x1); }
-        else {
-            return ($datenobjekt.x1);}
+        $datenreihe3[0] = $datenobjekt.x1;
+        $datenreihe3[1] = $datenobjekt.x2;
+        $datenreihe3[2] = $datenobjekt.x3;
+        $datenreihe3[3] = $datenobjekt.x4;
+        $datenreihe3[4] = $datenobjekt.x5;
+        $datenreihe3[5] = $datenobjekt.x6;
         }
-</script>
+
+ </script>
 
 <slot></slot>
 
@@ -37,10 +34,10 @@
     <div>Die Eingabe als Array: {$datenreihe3}</div>
     <br/>
 
-    <style>
+<style>
         .input {
             color: darkblue;
             padding-left: 1em;
             font-family: Arial, Helvetica, sans-serif;
         }
-    </style>
+</style>
