@@ -64,7 +64,7 @@
     <br/>
 </div>
 <Eingabeformular>Das Formular...</Eingabeformular>
-<Kuchendiagramm>Verteilung der statischen ABC-Reihe (externe Diagramm-Komponente):</Kuchendiagramm>
+<Kuchendiagramm>Verteilung der dynamischen Datenreihe (externe Diagramm-Komponente):</Kuchendiagramm>
 
 
 <style>
