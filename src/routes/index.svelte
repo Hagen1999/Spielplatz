@@ -35,7 +35,9 @@
 </script>
 
 
-<svelte:head><title>Testwerte: {ghi}</title></svelte:head>
+<svelte:head>
+    <title>Testwerte: {ghi}</title>
+</svelte:head>
 
 <h1>Testberechnungen </h1>
 <h2>Zwei Zahlenreihen mit {mengeDerZahlen} Werten</h2>
@@ -47,20 +49,22 @@
     <div> Das lokale STAT-Array (abc) als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
     <div> Das lokale DYN-Array (ghi) als Verknüpfung zum zentralen Speicher lautet: {ghi} </div>
     <br/>
-    <div> Das berechnete "Min"-Ergebnis (der kleinste Wert) des ABC-Arrays lautet: {mein_minwert} </div>
-    <div> Das berechnete "Max"-Ergebnis (der größte Wert) des ABC-Arrays lautet: {mein_maxwert} </div>
-    <div> Der berechnete Mittelwert des ABC-Arrays lautet: {mein_mittelwert} </div>
-    <div> Der berechnete Median des ABC-Arrays lautet: {mein_median} </div>
-    <div> Die berechnete Summe des ABC-Arrays lautet: {meine_summe} </div>
-    <div> Der berechnete SD-Wert des ABC-Arrays lautet: {mein_sdwert} </div>
+    <div> <b>Die berechneten Ergebnisse des dynamischen Arrays:</b></div>
+    <ul> "Min"-Wert (der kleinste Wert): {mein_minwert} </ul>
+    <ul> "Max"-Wert (der größte Wert): {mein_maxwert} </ul>
+    <ul> Mittelwert: {mein_mittelwert} </ul>
+    <ul> Median: {mein_median} </ul>
+    <ul> Summenwert: {meine_summe} </ul>
+    <ul> SD-Wert: {mein_sdwert} </ul>
     <br/>
+    <div> <b>Lineare Regression</b></div>
     <div> Der berechnete Regressionswert der ABC- und DEF-Arrays als JSON-Objekt lautet: {resultat_regr} </div>
     <div> Der berechnete Regressionsprädiktorvariable P (m) lautet: {resultat_regr_str.m} (= Modellgüte)</div>
     <div> Der berechnete Regressionskoeefizient R^2 (b) lautet: {resultat_regr_str.b} % (= Effektstärke)</div>
     <br/>
 </div>
 <Eingabeformular>Das Formular...</Eingabeformular>
-<Kuchendiagramm>Verteilung der ABC-Reihe (externe Diagramm-Komponente):</Kuchendiagramm>
+<Kuchendiagramm>Verteilung der statischen ABC-Reihe (externe Diagramm-Komponente):</Kuchendiagramm>
 
 
 <style>
