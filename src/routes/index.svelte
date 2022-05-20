@@ -12,6 +12,7 @@
     import {datenreihe3} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
+    import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
  
     // Meine Variablen
     $: abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
@@ -63,7 +64,12 @@
     <div> Der berechnete Regressionskoeefizient R^2 (b) lautet: {resultat_regr_str.b} % (= Effektstärke)</div>
     <br/>
 </div>
+<br/>
+<GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage>
+<br/>
+<br/>
 <Eingabeformular>Das Formular...</Eingabeformular>
+<br/>
 <Kuchendiagramm>Verteilung der dynamischen Datenreihe (externe Diagramm-Komponente):</Kuchendiagramm>
 
 
