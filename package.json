@@ -21,6 +21,8 @@
   },
   "type": "module",
   "dependencies": {
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.2.0",
     "simple-statistics": "^7.7.5",
     "svelte-chartjs": "^1.1.4"
   }
