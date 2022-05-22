@@ -10,9 +10,13 @@
     // Interne Komponenten
     import {datenreihe1} from '../speicher/store'
     import {datenreihe3} from '../speicher/store'
+    import {bspDaten1} from '../speicher/store'
+    import {bspDaten2} from '../speicher/store'
+    import {bspDaten3} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
+    
  
     // Meine Variablen
     $: abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
@@ -66,9 +70,20 @@
 </div>
 <br/>
 <GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage>
+<div>JSON-Objekt 1 Nr. 1: {$bspDaten1.name1}.</div>
+<div>JSON-Objekt 1 Nr. 2: {$bspDaten1.mail1}.</div>
+<div>JSON-Objekt 1 Nr. 3: {$bspDaten1.pass1}.</div>
 <br/>
+<div>JSON-Objekt 2 Nr. 1: {$bspDaten2.name2}.</div>
+<div>JSON-Objekt 2 Nr. 2: {$bspDaten2.mail2}.</div>
+<div>JSON-Objekt 2 Nr. 3: {$bspDaten2.pass2}.</div>
 <br/>
-<Eingabeformular>Das Formular...</Eingabeformular>
+<div>JSON-Objekt 3 Nr. 1: {$bspDaten3.name3}.</div>
+<div>JSON-Objekt 3 Nr. 2: {$bspDaten3.mail3}.</div>
+<div>JSON-Objekt 3 Nr. 3: {$bspDaten3.pass3}.</div>
+<br/>
+<!-- <Eingabeformular>Das Formular...</Eingabeformular> -->
+
 <br/>
 <Kuchendiagramm>Verteilung der dynamischen Datenreihe (externe Diagramm-Komponente):</Kuchendiagramm>
 

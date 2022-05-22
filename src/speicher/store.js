@@ -15,3 +15,29 @@ export const datenobjekt = writable(
     x6 : 0
   }    
 );// Beispieldatenreihe als JSON-Objekt
+
+
+export const bspDaten1 = writable(
+  {  
+    name1 : "",
+    mail1 : "",
+    pass1 : "",
+  }      
+);
+
+
+export const bspDaten2 = writable(
+  {  
+    name2 : "",
+    mail2 : "",
+    pass2 : "",
+  }
+);
+
+export const bspDaten3 = writable(
+  {  
+    name3 : "",
+    mail3 : "",
+    pass3 : "",
+  }
+);

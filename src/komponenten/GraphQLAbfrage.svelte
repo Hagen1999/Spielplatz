@@ -1,7 +1,48 @@
 <script>
-import { GraphQLClient, gql } from 'graphql-request'
+//import { GraphQLClient, gql } from 'graphql-request'
+import {bspDaten1} from '../speicher/store'
+import {bspDaten2} from '../speicher/store'
+import {bspDaten3} from '../speicher/store'
 
-export async function main() {
+function test(){
+  return "Hallo Welt!";
+}
+    const teststring = test(); 
+    console.log(teststring);
+
+const test2 = () => {
+  return "Hallo Welt2!";
+    }
+    const teststring2 = test2(); 
+    console.log(teststring2);
+
+function createUser2() {
+  const user = {
+    name: "Sven2",
+    mail: "Mail2",
+    pass: "Pass2"
+  }
+  return user;
+}
+$bspDaten2.name2 = createUser2().name;
+$bspDaten2.mail2 = createUser2().mail;
+$bspDaten2.pass2 = createUser2().pass;
+console.log($bspDaten2.name2);
+
+
+const createUser3 = () => ({
+    name: "Sven3",
+    mail: "Mail3",
+    pass: "Pass3"
+})
+$bspDaten3.name3 = createUser3().name;
+$bspDaten3.mail3 = createUser3().mail;
+$bspDaten3.pass3 = createUser3().pass;
+console.log($bspDaten3.name3);
+
+
+
+async function main() {
   const endpoint = ''
 
   const graphQLClient = new GraphQLClient(endpoint, {
@@ -44,8 +85,16 @@ export async function main() {
   console.log("Jahre: " + jahr0, jahr1, jahr2);
   console.log("Jahre als String: " + jahre);
 
-  return final;
+  //return [final, jahr0];
+  return jahr0;
 }
+$: irgendwas = main().then((result) => console.log(result));
+$bspDaten1.name1 = main().then((result) => console.log(result));
+$bspDaten1.mail1 = main().(JSON.stringify(data.abfrageJahr[1].Jahr));
+$bspDaten1.pass1 = main().(JSON.stringify(data.abfrageJahr[2].Jahr));
+console.log($bspDaten1.name1);
+console.log($bspDaten1.mail1);
+console.log($bspDaten1.pass1);
 
 /*
 main().then((final2) => {
@@ -57,18 +106,16 @@ main().then((final2) => {
   return final3;
 });
 */
-
+/*
 main().catch((error) => console.error(error));
 //const resultatAbfrage = main().catch((error) => console.error(error));
 //const resultatAbfrage = main().then();
 //$: dieAntwort = JSON.stringify(resultatAbfrage);
 //$: resultatAbfrage2 = JSON.parse(dieAntwort);
 
-
+*/
 </script>
 
 <slot></slot>
 
-<div>
-    Das JSON-Objekt die Antwort lautet: .
-</div>
+<div>Das JSON-Objekt in der Komponente lautet: {irgendwas} .</div>
