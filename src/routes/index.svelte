@@ -1,3 +1,25 @@
+<script context="module">
+    import { request, gql } from "graphql-request";
+  
+    const query = gql`
+      {
+        countries {
+          name
+          emoji
+        }
+      }
+    `;
+  
+    export const load = async () => {
+      const data = await request("https://countries.trevorblades.com/", query);
+  
+      return {
+        props: {
+          data,
+        },
+      };
+    };
+  </script>
 <script>
 
     //import {min} from 'simple-statistics' => VERALTET
@@ -17,7 +39,11 @@
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     
- 
+    export /**
+    * @type {{ countries: any; }}
+    */
+    let data;
+
     // Meine Variablen
     $: abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
     $: ghi = $datenreihe3;
@@ -69,7 +95,7 @@
     <br/>
 </div>
 <br/>
-<GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage>
+<!-- <GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage> -->
 <div>JSON-Objekt 1 Nr. 1: {$bspDaten1.name1}.</div>
 <div>JSON-Objekt 1 Nr. 2: {$bspDaten1.mail1}.</div>
 <div>JSON-Objekt 1 Nr. 3: {$bspDaten1.pass1}.</div>
@@ -87,6 +113,13 @@
 <br/>
 <Kuchendiagramm>Verteilung der dynamischen Datenreihe (externe Diagramm-Komponente):</Kuchendiagramm>
 
+  <!-- {JSON.stringify(data)} -->
+  
+  <h1>Countries</h1>
+  
+  {#each data.countries as { name, emoji }}
+    <p>{emoji} {name}</p>
+  {/each}
 
 <style>
     .textblock {

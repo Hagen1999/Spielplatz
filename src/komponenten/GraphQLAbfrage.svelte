@@ -1,9 +1,10 @@
-<script>
-//import { GraphQLClient, gql } from 'graphql-request'
+<script context="module">
+
+import { GraphQLClient, gql } from 'graphql-request'
 import {bspDaten1} from '../speicher/store'
 import {bspDaten2} from '../speicher/store'
 import {bspDaten3} from '../speicher/store'
-
+/*
 function test(){
   return "Hallo Welt!";
 }
@@ -39,7 +40,7 @@ $bspDaten3.name3 = createUser3().name;
 $bspDaten3.mail3 = createUser3().mail;
 $bspDaten3.pass3 = createUser3().pass;
 console.log($bspDaten3.name3);
-
+*/
 
 
 async function main() {
@@ -73,7 +74,7 @@ async function main() {
   console.log(JSON.stringify(data, undefined, 2));
   //console.log("toll2");
   //console.log(JSON.stringify(data));
-
+  /*
   const final = JSON.stringify(data, undefined, 2);
 
   const jahr0 = JSON.stringify(data.abfrageJahr[0].Jahr);
@@ -87,7 +88,26 @@ async function main() {
 
   //return [final, jahr0];
   return jahr0;
+  */
+  return {
+      props: {
+        data,
+      },
+    };
 }
+</script>
+
+<script>
+
+
+
+export /**
+    * @type {{ abfrageJahr: any; }}
+    */
+    let data;
+
+    
+/*
 $: irgendwas = main().then((result) => console.log(result));
 $bspDaten1.name1 = main().then((result) => console.log(result));
 $bspDaten1.mail1 = main().(JSON.stringify(data.abfrageJahr[1].Jahr));
@@ -96,7 +116,8 @@ console.log($bspDaten1.name1);
 console.log($bspDaten1.mail1);
 console.log($bspDaten1.pass1);
 
-/*
+
+
 main().then((final2) => {
   //const title = document.querySelector('h1');
   //title.textContent = final2;
@@ -114,8 +135,19 @@ main().catch((error) => console.error(error));
 //$: resultatAbfrage2 = JSON.parse(dieAntwort);
 
 */
+
+
+
+
 </script>
 
 <slot></slot>
 
-<div>Das JSON-Objekt in der Komponente lautet: {irgendwas} .</div>
+<div>Das JSON-Objekt in der Komponente lautet:  .</div>
+
+<h1>DATENABFRAGE</h1>
+  
+{#each data.abfrageJahr as { Jahr, MAKennung }}
+  <p>{Jahr} {MAKennung}</p>
+{/each}
+
