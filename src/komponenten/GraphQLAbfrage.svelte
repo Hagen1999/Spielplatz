@@ -60,12 +60,6 @@ async function main() {
               }) {
                 Jahr
                 MAKennung
-                Demo {
-                  Altersgrp
-                  AnstVerh
-                  BuKr
-                  BuLine
-                }
               }
             }
               `

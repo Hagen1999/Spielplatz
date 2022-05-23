@@ -12,7 +12,8 @@
   
     export const load = async () => {
       const data = await request("https://countries.trevorblades.com/", query);
-  
+      console.log(JSON.stringify(data, undefined, 2));
+
       return {
         props: {
           data,
@@ -37,7 +38,8 @@
     import {bspDaten3} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
-    import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
+    import GraphQLAbfrage from '../komponenten/GraphQLAbfrage.svelte';
+import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte'
     
     export /**
     * @type {{ countries: any; }}
@@ -95,7 +97,10 @@
     <br/>
 </div>
 <br/>
-<!-- <GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage> -->
+<!-- -->
+<GraphQlAbfrage>HIER STEHEN DIE ERGEBNISSE: </GraphQlAbfrage> 
+
+
 <div>JSON-Objekt 1 Nr. 1: {$bspDaten1.name1}.</div>
 <div>JSON-Objekt 1 Nr. 2: {$bspDaten1.mail1}.</div>
 <div>JSON-Objekt 1 Nr. 3: {$bspDaten1.pass1}.</div>
