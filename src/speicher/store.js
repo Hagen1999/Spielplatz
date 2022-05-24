@@ -15,3 +15,9 @@ export const datenobjekt = writable(
     x6 : 0
   }    
 );// Beispieldatenreihe als JSON-Objekt
+
+
+export const resultatAbfrage = writable(
+  {  
+  }    
+);

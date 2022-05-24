@@ -21,17 +21,16 @@
   */
   
   import { GraphQLClient, gql } from 'graphql-request'
-  //import {gqlobjekt} from '../speicher/store'
+  import {resultatAbfrage} from '../speicher/store'
   
   
-  $: resultatAbfrage = {};
+  $resultatAbfrage = {};
   
   async function main() {
-    const endpoint = ''
   
-    const graphQLClient = new GraphQLClient(endpoint, {
+    const graphQLClient = new GraphQLClient('', {
       headers: {
-        //authorization: 'Bearer ',
+        authorization: 'Bearer ',
           //apiKey: '...',
       },
     })
@@ -57,20 +56,20 @@
     */
     console.log("Das Ergebnis in der Funktion: " + JSON.stringify(data, undefined, 2));
     return data;
-  /*
+    /*
     return {
           props: {
             data,
           },
         };
-  */
+    */
   }
   
   
   $: main().catch((error) => console.error(error));
   
   //$: main().then((val) => console.log("DIE DATEN außerhab: " + val));
-  $: main().then((val) => (resultatAbfrage = val));
+  $: main().then((val) => ($resultatAbfrage = val));
   //$: main().then((val) => console.log("DIE DATEN außerhab: " + resultatAbfrage));
   //$: resultatAbfrage2 = JSON.parse(resultatAbfrage.abfrageJahr[0].Jahr); geht nicht!!
   
@@ -83,21 +82,23 @@
 
 
   */
-  
+
+
   </script>
   
   <slot></slot>
   
-  {JSON.stringify(resultatAbfrage)}
+  {JSON.stringify($resultatAbfrage)}
   
-  {#if resultatAbfrage }
+  {#if $resultatAbfrage }
   <div>
       Die Antworten lauten:
-     <p>1. {resultatAbfrage}</p>
+     <p>1. {$resultatAbfrage}</p>
   </div>
+  
   {:else}
   <div>
     Die Antworten lauten:
-   <p>2. {resultatAbfrage}</p>
+   <p>2. {$resultatAbfrage}</p>
   </div>
   {/if}
