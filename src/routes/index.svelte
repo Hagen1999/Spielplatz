@@ -13,7 +13,8 @@
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
- 
+    import {resultatAbfrage} from '../speicher/store'
+
     // Meine Variablen
     $: abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
     $: ghi = $datenreihe3;
@@ -43,9 +44,13 @@
 <h1>Testberechnungen </h1>
 <h2>Zwei Zahlenreihen mit {mengeDerZahlen} Werten</h2>
 
+
+
 <div class="textblock">
     <div> Die statische Datenreihe (1) des zentralen Speichers lautet: {$datenreihe1} </div>
     <div> Die dynamische Datenreihe (3) des zentralen Speichers lautet: {$datenreihe3} </div>
+    <br/>
+    <div> <b>Und hier das GraphQL Objekt: {JSON.stringify($resultatAbfrage)} </b></div>
     <br/>
     <div> Das lokale STAT-Array (abc) als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
     <div> Das lokale DYN-Array (ghi) als Verknüpfung zum zentralen Speicher lautet: {ghi} </div>
