@@ -1,12 +1,15 @@
 <script>
 import { GraphQLClient, gql } from 'graphql-request'
 
+
+let resultatAbfrage = {};
+
 async function main() {
-  const endpoint = '...'
+  const endpoint = ''
 
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
-      //authorization: 'Bearer ...',
+      //authorization: 'Bearer',
         //apiKey: '...',
     },
   })
@@ -29,25 +32,32 @@ async function main() {
               `
 
   const data = await graphQLClient.request(query);
-  console.log(JSON.stringify(data, undefined, 2));
+  //console.log(JSON.stringify(data, undefined, 2));
   
 
-  const final = JSON.stringify(data);
-  return final;
-  //return data;
+  //const final = JSON.stringify(data);
+  //return final;
+
+  return {
+        props: {
+          data,
+        },
+      };
+
 }
 
-main().catch((error) => console.error(error));
-//const resultatAbfrage = main().catch((error) => console.error(error));
-//const resultatAbfrage = main().then();
-//$: dieAntwort = JSON.stringify(resultatAbfrage);
-//$: resultatAbfrage2 = JSON.parse(dieAntwort);
 
-
+$: main().catch((error) => console.error(error));
+$: main().then((val) => console.log("DIE DATEN" + val));
+$: main().then((val) => (resultatAbfrage = val));
+$: dieAntwort = JSON.stringify(resultatAbfrage);
+// $: resultatAbfrage2 = JSON.parse(dieAntwort);
 </script>
 
 <slot></slot>
 
 <div>
-    Das JSON-Objekt die Antwort lautet: {main().catch()}.
+    Die Antworten lauten:
+   <p>1. {resultatAbfrage}</p>
+   <p>2. {dieAntwort}</p>
 </div>
