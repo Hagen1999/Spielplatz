@@ -28,9 +28,9 @@
   
   async function main() {
   
-    const graphQLClient = new GraphQLClient('https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/vftestapp0-mhegz/graphql', {
+    const graphQLClient = new GraphQLClient('', {
       headers: {
-        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJiYWFzX2RldmljZV9pZCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCIsImJhYXNfZG9tYWluX2lkIjoiNjI0MWM0N2NmMmFlYTg2YmFkOTYwYTA3IiwiZXhwIjoxNjUzNDMxNDU2LCJpYXQiOjE2NTM0Mjk2NTYsImlzcyI6IjYyOGQ1NTk4OGMzZmM0ZGU5N2I4YzYwNyIsInN0aXRjaF9kZXZJZCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCIsInN0aXRjaF9kb21haW5JZCI6IjYyNDFjNDdjZjJhZWE4NmJhZDk2MGEwNyIsInN1YiI6IjYyOGQ1NTk4OGMzZmM0ZGU5N2I4YzYwNSIsInR5cCI6ImFjY2VzcyJ9.TERvHP7g3-0zFp9Y0rfZhNbrCuZe5DkJW4hcx0SxGy8',
+        authorization: 'Bearer ',
           //apiKey: '...',
       },
     })
