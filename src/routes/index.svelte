@@ -8,10 +8,13 @@
     // Interne Komponenten
     import {datenreihe1} from '../speicher/store'
     import {datenreihe3} from '../speicher/store'
+    import {resultatAbfrage} from '../speicher/store'
+    import {jahreszahlen} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
-    import {resultatAbfrage} from '../speicher/store'
+
+    import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
 
     // Meine Variablen
     $: abc = $datenreihe1; // die externe Referenz auf die ersten Rohwerte im Store
@@ -42,14 +45,14 @@
 <svelte:head>
     <title>Testwerte: {ghi}</title>
 </svelte:head>
-
+<JahreszahlAuswahl> Filterauswahl: {$jahreszahlen} </JahreszahlAuswahl>
     <!-- Der HTML Bereich -->
 
 <h1>Testberechnungen </h1>
 <h2>Zwei Zahlenreihen mit {mengeDerZahlen} Werten</h2>
 
 <div class="textblock">
-    <div> <b>Datenbakabfrage</b></div>
+    <div> <b>Datenbankabfrage</b></div>
     <div> {console.log($resultatAbfrage)}</div>
     <div> <b>Das GraphQL Stringify-Objekt: {resultatString} </b></div>
     <br/>
@@ -83,7 +86,9 @@
     <br/>
 </div>
 <br/>
+ <!-- temporär deaktiviert
 <GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage>
+-->
 <br/>
 <br/>
 <Eingabeformular>Das Formular...</Eingabeformular>
