@@ -25,3 +25,5 @@ export const resultatAbfrage = writable(
       }]
   }
   );
+
+  export const jahreszahlen = writable([0]);
