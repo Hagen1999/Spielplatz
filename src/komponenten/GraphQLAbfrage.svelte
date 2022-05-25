@@ -18,33 +18,66 @@
                 `
 */
 
+/*
+query ($varJahr: [Int]){
+  abfrageJahr(input: {
+    Jahr : $varJahr
+  }) {
+    Jahr
+    MAKennung
+    Demo {
+      Altersgrp
+      AnstVerh
+      BuKr
+      BuLine
+    }
+  }
+}
+*/
+
   import { GraphQLClient, gql } from 'graphql-request'
   import {resultatAbfrage} from '../speicher/store'
+  import {jahreszahlen} from '../speicher/store'
+  import {jahreszahlenStat} from '../speicher/store'
   
   //$resultatAbfrage = {};
   
 
   async function main() {
-  
-    const graphQLClient = new GraphQLClient('', {
-      headers: {
-        authorization: 'Bearer ',
-          //apiKey: '...',
-      },
-    })
+    
+    const endpoint = ''
+
+    const client = new GraphQLClient(endpoint)
   
     const query = gql`
-              {
-                abfrageJahr(input: {
-                  Jahr : [2018, 2019, 2020]
-                }) {
-                  Jahr
-                  MAKennung
-                }
-              }
+              query ($varJahr: [Int]){
+                    abfrageJahr(input: {
+                      Jahr : $varJahr
+                    }) {
+                      Jahr
+                      MAKennung
+                      Demo {
+                        Altersgrp
+                        AnstVerh
+                        BuKr
+                        BuLine
+                      }
+                    }
+                  }
                 `
-  
-    const data = await graphQLClient.request(query);
+    const variables = {
+      varJahr: [2018, 2019, 2020],
+      //varJahr: {jahreszahlenStat}, geht nicht!
+      //varJahr: {jahreszahlen}, geht nicht!
+    }
+
+    const requestHeaders = {
+        authorization: 'Bearer ',
+          //apiKey: '...',
+      }
+
+    const data = await client.request(query, variables, requestHeaders);
+
     return data;
     /*
     return {

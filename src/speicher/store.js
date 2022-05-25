@@ -21,9 +21,16 @@ export const resultatAbfrage = writable(
     "abfrageJahr":
       [{
         "Jahr":0,
-        "MAKennung":0
+        "MAKennung":0,
+        "Demo":{
+          "Altersgrp":0,
+          "AnstVerh":0,
+          "BuKr":0,
+          "BuLine":0
+        }
       }]
   }
   );
 
   export const jahreszahlen = writable([0]);
+  export const jahreszahlenStat = writable([2017,2018]); // als Test

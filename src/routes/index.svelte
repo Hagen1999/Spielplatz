@@ -46,6 +46,7 @@
     <title>Testwerte: {ghi}</title>
 </svelte:head>
 <JahreszahlAuswahl> Filterauswahl: {$jahreszahlen} </JahreszahlAuswahl>
+<div> {console.log($jahreszahlen)}</div>
     <!-- Der HTML Bereich -->
 
 <h1>Testberechnungen </h1>
@@ -54,13 +55,14 @@
 <div class="textblock">
     <div> <b>Datenbankabfrage</b></div>
     <div> {console.log($resultatAbfrage)}</div>
-    <div> <b>Das GraphQL Stringify-Objekt: {resultatString} </b></div>
+    <div>Das GraphQL Stringify-Objekt: {resultatString}</div>
     <br/>
     <div>
         {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
-            <li>{jahreszeile.Jahr} & {jahreszeile.MAKennung} </li>
+            <li><b>| {jahreszeile.Jahr} | {jahreszeile.MAKennung} | {jahreszeile.Demo.Altersgrp} | {jahreszeile.Demo.BuLine} | {jahreszeile.Demo.AnstVerh} | {jahreszeile.Demo.BuKr} |</b></li>
         {/each}
     </div>
+    <br/>
     <div> Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
     <div> Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
     <br/>
@@ -86,9 +88,9 @@
     <br/>
 </div>
 <br/>
- <!-- temporär deaktiviert
+ <!-- temporär deaktiviert -->
 <GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage>
--->
+
 <br/>
 <br/>
 <Eingabeformular>Das Formular...</Eingabeformular>
