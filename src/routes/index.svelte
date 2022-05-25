@@ -1,7 +1,5 @@
 <script>
 
-    //import {min} from 'simple-statistics' => VERALTET
-    //import {mean} from 'simple-statistics' => VERALTET
     //import Pie from "svelte-chartjs/src/Pie.svelte" => VERALTET, da das Diagramm im externen Modul liegt
 
     // Externe Module
@@ -34,6 +32,10 @@
     $: resultat_regr = JSON.stringify(meine_regression); // hier wird das Ergebnis zum JSON-Objekt
     $: resultat_regr_str = JSON.parse(resultat_regr); // hier wird das JSON-Objekt zum geparsten String
 
+    // GraphQL-Verarbeitung
+    $: resultatString = JSON.stringify($resultatAbfrage);
+    console.log($resultatAbfrage)
+
 </script>
 
 
@@ -41,16 +43,27 @@
     <title>Testwerte: {ghi}</title>
 </svelte:head>
 
+    <!-- Der HTML Bereich -->
+
 <h1>Testberechnungen </h1>
 <h2>Zwei Zahlenreihen mit {mengeDerZahlen} Werten</h2>
 
-
-
 <div class="textblock">
+    <div> <b>Datenbakabfrage</b></div>
+    <div> {console.log($resultatAbfrage)}</div>
+    <div> <b>Das GraphQL Stringify-Objekt: {resultatString} </b></div>
+    <br/>
+    <div>
+        {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
+            <li>{jahreszeile.Jahr} & {jahreszeile.MAKennung} </li>
+        {/each}
+    </div>
+    <div> Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
+    <div> Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
+    <br/>
+    <div> <b>Svelte-Store - lokaler Speicher</b></div>
     <div> Die statische Datenreihe (1) des zentralen Speichers lautet: {$datenreihe1} </div>
     <div> Die dynamische Datenreihe (3) des zentralen Speichers lautet: {$datenreihe3} </div>
-    <br/>
-    <div> <b>Und hier das GraphQL Objekt: {JSON.stringify($resultatAbfrage)} </b></div>
     <br/>
     <div> Das lokale STAT-Array (abc) als Verknüpfung zum zentralen Speicher lautet: {abc} </div>
     <div> Das lokale DYN-Array (ghi) als Verknüpfung zum zentralen Speicher lautet: {ghi} </div>
