@@ -16,8 +16,12 @@ export const datenobjekt = writable(
   }    
 );// Beispieldatenreihe als JSON-Objekt
 
-
 export const resultatAbfrage = writable(
-  {  
-  }    
-);
+  {
+    "abfrageJahr":
+      [{
+        "Jahr":0,
+        "MAKennung":0
+      }]
+  }
+  );
