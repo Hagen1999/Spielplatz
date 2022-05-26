@@ -41,7 +41,13 @@ query ($varJahr: [Int]){
   import {jahreszahlenStat} from '../speicher/store'
   
   //$resultatAbfrage = {};
-  
+
+  ////// BAUSTELLE
+  export function klickTest(){
+    console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
+  }
+  ////// BAUSTELLE/
+
 
   async function main() {
     
