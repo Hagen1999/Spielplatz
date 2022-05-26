@@ -13,6 +13,7 @@
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
+    import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte';
 
     import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
 
@@ -47,6 +48,8 @@
 </svelte:head>
 <JahreszahlAuswahl> Filterauswahl: {$jahreszahlen} </JahreszahlAuswahl>
 <div> {console.log($jahreszahlen)}</div>
+
+<div><ButtonSuchStart/></div>
     <!-- Der HTML Bereich -->
 
 <h1>Testberechnungen </h1>
