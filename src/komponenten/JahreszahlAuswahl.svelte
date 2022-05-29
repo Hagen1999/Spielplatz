@@ -7,9 +7,9 @@ import { jahreszahlen } from '../speicher/store'
     //let flavours = $jahreszahlen;
 
 	let menu = [
-		'2017',
-		'2018',
-		'2019'
+		2017,
+		2018,
+		2019
 	];
 
 	/**

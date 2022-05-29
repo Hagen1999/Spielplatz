@@ -42,8 +42,8 @@ query ($varJahr: [Int]){
   
   //$resultatAbfrage = {};
 
-  ////// BAUSTELLE
-  export function klickTest(){
+  ////// BAUSTELLE Aufrf von außen muss noch eingebunden werden
+  export const klickTest = () => {
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
   ////// BAUSTELLE/
@@ -72,10 +72,12 @@ query ($varJahr: [Int]){
                   }
                 `
     const variables = {
-      varJahr: [2018, 2019, 2020],
-      //varJahr: {jahreszahlenStat}, geht nicht!
-      //varJahr: {jahreszahlen}, geht nicht!
+      //varJahr: [2018, 2019, 2020], Ursprungstest mit staischen Anagben
+      
+      varJahr: $jahreszahlenStat//, geht!
+      //varJahr: $jahreszahlen //, geht auch, nach Aktivierung im Quellcode zur Laufzeit
     }
+    console.log(variables);
 
     const requestHeaders = {
         authorization: 'Bearer ',

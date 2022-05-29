@@ -34,3 +34,4 @@ export const resultatAbfrage = writable(
 
   export const jahreszahlen = writable([0]);
   export const jahreszahlenStat = writable([2017,2018]); // als Test
+
