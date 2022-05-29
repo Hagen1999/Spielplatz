@@ -39,11 +39,13 @@ query ($varJahr: [Int]){
   import {resultatAbfrage} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
   import {jahreszahlenStat} from '../speicher/store'
+
+  import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte'
   
   //$resultatAbfrage = {};
 
   ////// BAUSTELLE Aufrf von außen muss noch eingebunden werden
-  export const klickTest = () => {
+  const klickTest = () => {
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
   ////// BAUSTELLE/
@@ -75,7 +77,7 @@ query ($varJahr: [Int]){
       //varJahr: [2018, 2019, 2020], Ursprungstest mit staischen Anagben
       
       varJahr: $jahreszahlenStat//, geht!
-      //varJahr: $jahreszahlen //, geht auch, nach Aktivierung im Quellcode zur Laufzeit
+      //varJahr: $jahreszahlen //, geht noch nicht so richtig , nach Aktivierung im Quellcode zur Laufzeit
     }
     console.log(variables);
 
@@ -103,5 +105,9 @@ query ($varJahr: [Int]){
   </script>
   
   <slot></slot>
+  <ButtonSuchStart 
+    on:Signal={() => console.log("Buttondrücker wurde in externer Komponente empfangen.")} 
+    on:Signal={() => klickTest()}
+    on:Signal={() => main()}/>
   
   {JSON.stringify($resultatAbfrage)}

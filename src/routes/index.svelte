@@ -52,8 +52,10 @@
 <div> {console.log($jahreszahlen)}</div>
 <div> {console.log($jahreszahlenStat)}</div>
 
-<div><ButtonSuchStart /></div>
-    <!-- Der HTML Bereich -->
+<!-- Der HTML Bereich
+
+    <div><ButtonSuchStart /></div>
+ -->
 
 <h1>Testberechnungen </h1>
 <h2>Zwei Zahlenreihen mit {mengeDerZahlen} Werten</h2>
