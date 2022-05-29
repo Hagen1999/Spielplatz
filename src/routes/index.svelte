@@ -10,6 +10,8 @@
     import {datenreihe3} from '../speicher/store'
     import {resultatAbfrage} from '../speicher/store'
     import {jahreszahlen} from '../speicher/store'
+    import {jahreszahlenStat} from '../speicher/store'
+
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
@@ -48,8 +50,9 @@
 </svelte:head>
 <JahreszahlAuswahl> Filterauswahl: {$jahreszahlen} </JahreszahlAuswahl>
 <div> {console.log($jahreszahlen)}</div>
+<div> {console.log($jahreszahlenStat)}</div>
 
-<div><ButtonSuchStart/></div>
+<div><ButtonSuchStart /></div>
     <!-- Der HTML Bereich -->
 
 <h1>Testberechnungen </h1>
