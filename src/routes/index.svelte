@@ -16,8 +16,6 @@
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte';
-    import RandomNumber from '../komponenten/RandomNumber.svelte';
-
     import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
 
     // Meine Variablen
@@ -49,7 +47,7 @@
 <svelte:head>
     <title>Testwerte: {ghi}</title>
 </svelte:head>
-<RandomNumber/>
+
 <JahreszahlAuswahl> Filterauswahl: {$jahreszahlen} </JahreszahlAuswahl>
 <div> {console.log($jahreszahlen)}</div>
 <div> {console.log($jahreszahlenStat)}</div>
@@ -100,7 +98,6 @@
 <br/>
  <!-- temporär deaktiviert -->
 <GraphQlAbfrage>GraphQL-Modul geladen</GraphQlAbfrage>
-
 <br/>
 <br/>
 <Eingabeformular>Das Formular...</Eingabeformular>
