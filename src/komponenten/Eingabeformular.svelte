@@ -16,6 +16,8 @@
 
 <slot></slot>
 
+<h2>Eingabeformular</h2>
+
     <form on:input|preventDefault={speicherformular}>
         <div>Zahl 1: <input class="input" type="number" bind:value= {$datenobjekt.x1} /></div>
         <div>Zahl 2: <input class="input" type="number" bind:value= {$datenobjekt.x2} /></div>
@@ -25,12 +27,14 @@
         <div>Zahl 6: <input class="input" type="number" bind:value= {$datenobjekt.x6} /></div>
     </form>
     <br/>
+    <!-- 
     <div>Zahl des 1. Felds: {$datenobjekt.x1}</div>
     <div>Zahl des 2. Felds: {$datenobjekt.x2}</div>
     <div>Zahl des 3. Felds: {$datenobjekt.x3}</div>
     <div>Zahl des 4. Felds: {$datenobjekt.x4}</div>
     <div>Zahl des 5. Felds: {$datenobjekt.x5}</div>
     <div>Zahl des 6. Felds: {$datenobjekt.x6}</div>
+    -->
     <div>Die Eingabe als Array: {$datenreihe3}</div>
     <br/>
 
