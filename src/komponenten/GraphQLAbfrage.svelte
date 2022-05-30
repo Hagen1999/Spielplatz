@@ -48,12 +48,13 @@ query ($varJahr: [Int]){
 
   ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
   const klickTest = () => {
+    main().then((val) => ($resultatAbfrage = val));
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
   ////// BAUSTELLE/
 
 
-  async function main() {
+  export const main = async () => {
     const endpoint = ''
     const client = new GraphQLClient(endpoint)
     const query = gql`
@@ -74,8 +75,8 @@ query ($varJahr: [Int]){
                 `
     const variables = {
       //varJahr: [2018, 2019, 2020], Ursprungstest mit staischen Anagben    
-      varJahr: $jahreszahlenStat//, geht!
-      //varJahr: $jahreszahlen //, geht noch nicht so richtig , nach Aktivierung im Quellcode zur Laufzeit
+      //varJahr: $jahreszahlenStat//, geht!
+      varJahr: $jahreszahlen //, geht!
     }
     //console.log(variables);
 
@@ -87,8 +88,8 @@ query ($varJahr: [Int]){
     return data;
   }
   
-  $: main().catch((error) => console.error(error));
-  $: main().then((val) => ($resultatAbfrage = val));
+  //$: main().catch((error) => console.error(error));
+  //$: main().then((val) => ($resultatAbfrage = val));
 
   </script>
   
