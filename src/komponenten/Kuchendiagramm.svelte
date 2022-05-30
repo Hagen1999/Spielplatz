@@ -36,6 +36,7 @@ import {datenreihe3} from '../speicher/store'
     
     </script>
 
+<h2>Kuchendiagramm</h2>
     <div>    
       <slot></slot>
       <div><Pie {data} {options} /></div>

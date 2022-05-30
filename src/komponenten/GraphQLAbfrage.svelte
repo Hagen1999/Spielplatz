@@ -42,6 +42,10 @@ query ($varJahr: [Int]){
 
   import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte'
 
+  // GraphQL-Verarbeitung
+    //$: resultatString = JSON.stringify($resultatAbfrage);
+    //console.log($resultatAbfrage)
+
   ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
   const klickTest = () => {
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
@@ -50,11 +54,8 @@ query ($varJahr: [Int]){
 
 
   async function main() {
-    
     const endpoint = ''
-
     const client = new GraphQLClient(endpoint)
-  
     const query = gql`
               query ($varJahr: [Int]){
                     abfrageJahr(input: {
@@ -76,25 +77,15 @@ query ($varJahr: [Int]){
       varJahr: $jahreszahlenStat//, geht!
       //varJahr: $jahreszahlen //, geht noch nicht so richtig , nach Aktivierung im Quellcode zur Laufzeit
     }
-    console.log(variables);
+    //console.log(variables);
 
     const requestHeaders = {
         authorization: 'Bearer ',
           //apiKey: '...',
       }
-
     const data = await client.request(query, variables, requestHeaders);
-
     return data;
-    /*
-    return {
-          props: {
-            data,
-          },
-        };
-    */
   }
-  
   
   $: main().catch((error) => console.error(error));
   $: main().then((val) => ($resultatAbfrage = val));
@@ -105,11 +96,48 @@ query ($varJahr: [Int]){
 
   <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
   <!-- ///////////////////////////// Button "Suche" ////////////////////////////////////////-->
+  <h2>GraphQL-Abfrage</h2>
+    <div> Console.Log {console.log($jahreszahlen)}</div>
+    <div> Console.Log {console.log($jahreszahlenStat)}</div>
+    <div> Console.Log {console.log($resultatAbfrage)}</div>
+  <br>
 
   <ButtonSuchStart 
     on:Signal={() => console.log("Buttondrücker wurde in externer Komponente empfangen.")} 
     on:Signal={() => klickTest()}/>
-  
-  {JSON.stringify($resultatAbfrage)}
+    <br>
+    <br>
+    <div class="textblock">
+      <!-- 
+      <br/>
+    <div>JSON.Stringify: 
+      <br>
+      {JSON.stringify($resultatAbfrage)} 
+    </div>
+    <br>
+    <div>Das GraphQL Stringify-Objekt: 
+      <br>
+      {resultatString}</div>
+    <br/>
+    -->
+    <div>
+        {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
+            <li><b>| {jahreszeile.Jahr} | {jahreszeile.MAKennung} | {jahreszeile.Demo.Altersgrp} | {jahreszeile.Demo.BuLine} | {jahreszeile.Demo.AnstVerh} | {jahreszeile.Demo.BuKr} |</b></li>
+        {/each}
+    </div>
+    <br/>
+    <div> Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
+    <div> Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
+    <br/>
+  </div>
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
+
+
+<style>
+  .textblock {
+      color: darkgreen;
+      padding-left: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
