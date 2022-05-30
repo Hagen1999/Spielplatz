@@ -11,5 +11,5 @@
 </script>
 
 <button 
-	on:click= {handleClick}>Testbuton - Klicktest
+	on:click|preventDefault = {handleClick}>Testbuton - Klicktest
 </button>
