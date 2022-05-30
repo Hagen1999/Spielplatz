@@ -20,7 +20,12 @@ import { jahreszahlen } from '../speicher/store'
 		return `${$jahreszahlen.slice(0, -1).join(', ')}, ${$jahreszahlen[$jahreszahlen.length - 1]}`;
 	}
 </script>
+
 <slot></slot>
+
+<!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
+<!-- ///////////////////////// Radio-Buttons & Checboxen /////////////////////////////////-->
+
 <h2>Radiobuttons: </h2>
 
 <label><input type=radio bind:group={scoops} name="scoops" value={1901}>1901</label>
@@ -46,3 +51,5 @@ import { jahreszahlen } from '../speicher/store'
         {join($jahreszahlen)}
 	</p>
 {/if}
+
+<!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->

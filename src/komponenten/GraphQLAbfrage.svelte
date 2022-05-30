@@ -44,15 +44,19 @@ query ($varJahr: [Int]){
   
   //$resultatAbfrage = {};
 
-  ////// BAUSTELLE Aufrf von außen muss noch eingebunden werden
+  ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
+  let mainStart = main();
+
   const klickTest = () => {
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
+    mainStart = main();
   }
   ////// BAUSTELLE/
 
 
   async function main() {
     
+    //const endpoint = MDBA_EP;
     const endpoint = ''
 
     const client = new GraphQLClient(endpoint)
@@ -76,8 +80,8 @@ query ($varJahr: [Int]){
     const variables = {
       //varJahr: [2018, 2019, 2020], Ursprungstest mit staischen Anagben
       
-      varJahr: $jahreszahlenStat//, geht!
-      //varJahr: $jahreszahlen //, geht noch nicht so richtig , nach Aktivierung im Quellcode zur Laufzeit
+      //varJahr: $jahreszahlenStat//, geht!
+      varJahr: $jahreszahlen //, geht noch nicht so richtig , nach Aktivierung im Quellcode zur Laufzeit
     }
     console.log(variables);
 
@@ -105,9 +109,21 @@ query ($varJahr: [Int]){
   </script>
   
   <slot></slot>
+
+  <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
+  <!-- ////////////////////// Button "Suche" & Ergebnistabelle /////////////////////////////-->
+
   <ButtonSuchStart 
     on:Signal={() => console.log("Buttondrücker wurde in externer Komponente empfangen.")} 
-    on:Signal={() => klickTest()}
-    on:Signal={() => main()}/>
+    on:Signal={() => klickTest()}/>
   
   {JSON.stringify($resultatAbfrage)}
+
+  <p>{mainStart}</p>
+  <div>
+    {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
+        <li><b>| {jahreszeile.Jahr} | {jahreszeile.MAKennung} | {jahreszeile.Demo.Altersgrp} | {jahreszeile.Demo.BuLine} | {jahreszeile.Demo.AnstVerh} | {jahreszeile.Demo.BuKr} |</b></li>
+    {/each}
+</div>
+
+<!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
