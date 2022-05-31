@@ -99,7 +99,7 @@ query ($varJahr: [Int]){
   <!-- ///////////////////////////// Button "Suche" ////////////////////////////////////////-->
   <h2>GraphQL-Abfrage</h2>
     <div> Console.Log {console.log($jahreszahlen)}</div>
-    <div> Console.Log {console.log($jahreszahlenStat)}</div>
+    <!-- <div> Console.Log {console.log($jahreszahlenStat)}</div> -->
     <div> Console.Log {console.log($resultatAbfrage)}</div>
   <br>
 
