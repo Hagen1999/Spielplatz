@@ -38,14 +38,11 @@ query ($varJahr: [Int]){
   import { GraphQLClient, gql } from 'graphql-request'
   import {resultatAbfrage} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
-  import {jahreszahlenStat} from '../speicher/store'
+  //import {jahreszahlenStat} from '../speicher/store' // temporär deaktiviert
 
-  const SVSENVVAR_M = import.meta.env.VITE_MDBA_EP_URLM;
   const SVSENVVAR_O = import.meta.env.VITE_MDBA_EP_URLO;
-  //const VITE_MDBA_EP = process.env.VITE_MDBA_EP;
-
-    console.log("Hallo:" + SVSENVVAR_M);
-
+    //const VITE_MDBA_EP = process.env.VITE_MDBA_EP; => geht nicht!
+    //console.log("Hallo:" + SVSENVVAR_O); => geht!
 
   import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte'
 
@@ -62,7 +59,7 @@ query ($varJahr: [Int]){
 
 
   export const main = async () => {
-    const endpoint = SVSENVVAR_M
+    const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
     const query = gql`
               query ($varJahr: [Int]){
