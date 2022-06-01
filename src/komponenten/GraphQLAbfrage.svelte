@@ -40,6 +40,13 @@ query ($varJahr: [Int]){
   import {jahreszahlen} from '../speicher/store'
   import {jahreszahlenStat} from '../speicher/store'
 
+  const SVSENVVAR_M = import.meta.env.VITE_MDBA_EP_URLM;
+  const SVSENVVAR_O = import.meta.env.VITE_MDBA_EP_URLO;
+  //const VITE_MDBA_EP = process.env.VITE_MDBA_EP;
+
+    console.log("Hallo:" + SVSENVVAR_M);
+
+
   import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte'
 
   // GraphQL-Verarbeitung
@@ -55,7 +62,7 @@ query ($varJahr: [Int]){
 
 
   export const main = async () => {
-    const endpoint = ''
+    const endpoint = SVSENVVAR_M
     const client = new GraphQLClient(endpoint)
     const query = gql`
               query ($varJahr: [Int]){
