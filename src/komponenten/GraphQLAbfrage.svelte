@@ -38,6 +38,9 @@ query ($varJahr: [Int]){
   import { GraphQLClient, gql } from 'graphql-request'
   import {resultatAbfrage} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
+  import {benutzerID} from '../speicher/store'
+  import {benutzerEmail} from '../speicher/store'
+  import {benutzerPwd} from '../speicher/store'
   import * as Realm from "realm-web"
 
   //import {jahreszahlenStat} from '../speicher/store' // temporär deaktiviert
@@ -48,6 +51,7 @@ query ($varJahr: [Int]){
     //console.log("Hallo:" + SVSENVVAR_O); => geht!
 
   import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte'
+import Base from 'svelte-chartjs/src/Base.svelte';
 
   // GraphQL-Verarbeitung
     //$: resultatString = JSON.stringify($resultatAbfrage);
@@ -63,18 +67,19 @@ query ($varJahr: [Int]){
     const app = new Realm.App(config);
 
     // Create an anonymous credential
-    const credentials = Realm.Credentials.anonymous();
-
+    //const credentials = Realm.Credentials.anonymous();
+    const credentials = Realm.Credentials.emailPassword($benutzerEmail, $benutzerPwd);
     const handleLogin = async () => {
       try {
     // Authenticate the user
     const user = await app.logIn(credentials);
     // `App.currentUser` updates to match the logged in user
+    $benutzerID = user.id;
     console.assert(user.id === app.currentUser?.id);
-    //console.log("User.ID= " + user.id);
-    //console.log("App.Current.User.ID= " + app.currentUser?.id);
-    //console.log("ID: " + id);
-    // console.log("Access-Token: " + app.currentUser?.accessToken)
+    console.log("User.ID= " + user.id);
+    console.log("App.Current.User.ID= " + app.currentUser?.id);
+    console.log("ID: " + id);
+    console.log("Access-Token: " + app.currentUser?.accessToken)
       } catch (e){
         console.error("error log in");
       }
@@ -159,16 +164,18 @@ query ($varJahr: [Int]){
       {resultatString}</div>
     <br/>
     -->
-    <div>
-        {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
-            <li><b>| {jahreszeile.Jahr} | {jahreszeile.MAKennung} | {jahreszeile.Demo.Altersgrp} | {jahreszeile.Demo.BuLine} | {jahreszeile.Demo.AnstVerh} | {jahreszeile.Demo.BuKr} |</b></li>
-        {/each}
-    </div>
-    <br/>
-    <div> Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
-    <div> Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
-    <br/>
-  </div>
+        <div>
+            {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
+                <li><b>| {jahreszeile.Jahr} | {jahreszeile.MAKennung} | {jahreszeile.Demo.Altersgrp} | {jahreszeile.Demo.BuLine} | {jahreszeile.Demo.AnstVerh} | {jahreszeile.Demo.BuKr} |</b></li>
+            {/each}
+        </div>
+      <br/>
+        <div>Benutzer-ID: {$benutzerID}</div>
+      <br/>
+        <div> Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
+        <div> Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
+      <br/>
+      </div>
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
 
