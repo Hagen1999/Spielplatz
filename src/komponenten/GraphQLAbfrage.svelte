@@ -38,9 +38,12 @@ query ($varJahr: [Int]){
   import { GraphQLClient, gql } from 'graphql-request'
   import {resultatAbfrage} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
+  import * as Realm from "realm-web"
+
   //import {jahreszahlenStat} from '../speicher/store' // temporär deaktiviert
 
   const SVSENVVAR_O = import.meta.env.VITE_MDBA_EP_URLO;
+  const id = import.meta.env.VITE_APP_ID;
     //const VITE_MDBA_EP = process.env.VITE_MDBA_EP; => geht nicht!
     //console.log("Hallo:" + SVSENVVAR_O); => geht!
 
@@ -50,8 +53,38 @@ query ($varJahr: [Int]){
     //$: resultatString = JSON.stringify($resultatAbfrage);
     //console.log($resultatAbfrage)
 
+
+    // BAUSTELLE AUTH USER - START
+    const config = {
+      id,
+    };
+    console.log(id);
+
+    const app = new Realm.App(config);
+
+    // Create an anonymous credential
+    const credentials = Realm.Credentials.anonymous();
+
+    const handleLogin = async () => {
+      try {
+    // Authenticate the user
+    const user = await app.logIn(credentials);
+    // `App.currentUser` updates to match the logged in user
+    console.assert(user.id === app.currentUser?.id);
+    //console.log("User.ID= " + user.id);
+    //console.log("App.Current.User.ID= " + app.currentUser?.id);
+    //console.log("ID: " + id);
+    // console.log("Access-Token: " + app.currentUser?.accessToken)
+      } catch (e){
+        console.error("error log in");
+      }
+    }
+
+    // BAUSTELLE AUTH USER - ENDE
+
   ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
   const klickTest = () => {
+    handleLogin(); // nicht verifiziert!!!!
     main().then((val) => ($resultatAbfrage = val));
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
@@ -83,11 +116,12 @@ query ($varJahr: [Int]){
       varJahr: $jahreszahlen //, geht!
     }
     //console.log(variables);
-
-    const requestHeaders = {
-        authorization: 'Bearer ',
+    await app.currentUser?.refreshCustomData(); // habe ich selbst eingefügt - Quelle Youtube Video Realm,React,MongoDB 
+    const requestHeaders = {        
+        authorization: 'Bearer ' + app.currentUser?.accessToken,
           //apiKey: '...',
       }
+
     const data = await client.request(query, variables, requestHeaders);
     return data;
   }
