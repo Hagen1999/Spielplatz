@@ -4,6 +4,7 @@
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
     import Statistik from '../komponenten/Statistik.svelte';
+    import Login from '..//komponenten/Login.svelte';
 </script>
 
 <svelte:head>
@@ -11,6 +12,8 @@
 
 <!-- HTML -->
 
+<br/>
+<Login></Login>
 <br/>
 <JahreszahlAuswahl></JahreszahlAuswahl>
 <br/>

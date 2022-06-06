@@ -51,7 +51,7 @@ query ($varJahr: [Int]){
     //console.log("Hallo:" + SVSENVVAR_O); => geht!
 
   import ButtonSuchStart from '../komponenten/ButtonSuchStart.svelte'
-import Base from 'svelte-chartjs/src/Base.svelte';
+  import Base from 'svelte-chartjs/src/Base.svelte';
 
   // GraphQL-Verarbeitung
     //$: resultatString = JSON.stringify($resultatAbfrage);
@@ -68,18 +68,22 @@ import Base from 'svelte-chartjs/src/Base.svelte';
 
     // Create an anonymous credential
     //const credentials = Realm.Credentials.anonymous();
-    const credentials = Realm.Credentials.emailPassword($benutzerEmail, $benutzerPwd);
+    $: credentials = Realm.Credentials.emailPassword($benutzerEmail, $benutzerPwd);
     const handleLogin = async () => {
       try {
     // Authenticate the user
     const user = await app.logIn(credentials);
     // `App.currentUser` updates to match the logged in user
     $benutzerID = user.id;
+    main().then((val) => ($resultatAbfrage = val));
+    
     console.assert(user.id === app.currentUser?.id);
     console.log("User.ID= " + user.id);
     console.log("App.Current.User.ID= " + app.currentUser?.id);
     console.log("ID: " + id);
     console.log("Access-Token: " + app.currentUser?.accessToken)
+
+
       } catch (e){
         console.error("error log in");
       }
@@ -90,7 +94,7 @@ import Base from 'svelte-chartjs/src/Base.svelte';
   ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
   const klickTest = () => {
     handleLogin(); // nicht verifiziert!!!!
-    main().then((val) => ($resultatAbfrage = val));
+    //main().then((val) => ($resultatAbfrage = val));
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
   ////// BAUSTELLE/
@@ -147,7 +151,7 @@ import Base from 'svelte-chartjs/src/Base.svelte';
   <br>
 
   <ButtonSuchStart 
-    on:Signal={() => console.log("Buttondrücker wurde in externer Komponente empfangen.")} 
+    on:Signal={() => console.log("Filter-Button wurde in externer Komponente gedrückt.")} 
     on:Signal={() => klickTest()}/>
     <br>
     <br>
@@ -164,16 +168,18 @@ import Base from 'svelte-chartjs/src/Base.svelte';
       {resultatString}</div>
     <br/>
     -->
+    <div>Benutzer-ID: {$benutzerID}</div>
+    <h3>Ergebnisse:</h3>
         <div>
             {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
                 <li><b>| {jahreszeile.Jahr} | {jahreszeile.MAKennung} | {jahreszeile.Demo.Altersgrp} | {jahreszeile.Demo.BuLine} | {jahreszeile.Demo.AnstVerh} | {jahreszeile.Demo.BuKr} |</b></li>
             {/each}
         </div>
       <br/>
-        <div>Benutzer-ID: {$benutzerID}</div>
-      <br/>
-        <div> Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
-        <div> Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
+        <div>Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
+        <div>Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
+        <br/>
+
       <br/>
       </div>
 
