@@ -25,6 +25,7 @@
     "graphql-request": "^4.3.0",
     "realm-web": "^1.7.0",
     "simple-statistics": "^7.7.5",
-    "svelte-chartjs": "^1.1.4"
+    "svelte-chartjs": "^1.1.4",
+    "svelte-spa-router": "^3.2.0"
   }
 }
