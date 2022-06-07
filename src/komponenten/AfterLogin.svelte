@@ -1,23 +1,15 @@
 <script>
-    /*
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
     import Statistik from '../komponenten/Statistik.svelte';
     import Login from '..//komponenten/Login.svelte';
-*/
-    import LoginComponent from '../komponenten/LoginComponent.svelte';
 </script>
 
-<svelte:head>
-</svelte:head>
+<div>
+	Die Komponente 'AfterLogin' wurde aufgerufen.
 
-<h1>Testseite</h1>
-<LoginComponent />
-
-<!-- HTML 
-<a href = "/login"> Logintestseite</a>
 <br/>
 <Login></Login>
 <br/>
@@ -30,4 +22,4 @@
 <Statistik></Statistik>
 <br/>
 <Kuchendiagramm></Kuchendiagramm>
--->
+</div>
