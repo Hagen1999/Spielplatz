@@ -40,3 +40,7 @@ export const resultatAbfrage = writable(
   export const benutzerEmail = writable("");
   export const benutzerPwd = writable("");
 
+  export const testuserstore = writable(false);
+  export const testuser = 'sven@sven.de'
+  export const testpass = 'sven'
+

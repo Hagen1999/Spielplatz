@@ -14,7 +14,7 @@
 
 <slot></slot>
 
-<h2>Login</h2>
+<h2>MongoDB-Authentifizierung</h2>
 
         <div>E-Mail: <input class="input" type="text" bind:value= {$benutzerEmail} /></div>
         <div>Passwort: <input class="input" type="password" bind:value= {$benutzerPwd} /></div>
