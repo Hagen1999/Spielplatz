@@ -39,14 +39,15 @@ query ($varJahr: [Int]){
   import {resultatAbfrage} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
   import {benutzerID} from '../speicher/store'
-  import {benutzerEmail} from '../speicher/store'
-  import {benutzerPwd} from '../speicher/store'
+  import {benutzerAccessToken} from '../speicher/store'
+  //import {benutzerEmail} from '../speicher/store'
+  //import {benutzerPwd} from '../speicher/store'
   import * as Realm from "realm-web"
 
   //import {jahreszahlenStat} from '../speicher/store' // temporär deaktiviert
 
   const SVSENVVAR_O = import.meta.env.VITE_MDBA_EP_URLO;
-  const id = import.meta.env.VITE_APP_ID;
+  const id = import.meta.env.VITE_APP_ID; // kann ggf. weg - habe ich in die index.svelte kopiert
     //const VITE_MDBA_EP = process.env.VITE_MDBA_EP; => geht nicht!
     //console.log("Hallo:" + SVSENVVAR_O); => geht!
 
@@ -57,7 +58,7 @@ query ($varJahr: [Int]){
     //$: resultatString = JSON.stringify($resultatAbfrage);
     //console.log($resultatAbfrage)
 
-
+/*
     // BAUSTELLE AUTH USER - START
     const config = {
       id,
@@ -88,13 +89,13 @@ query ($varJahr: [Int]){
         console.error("error log in");
       }
     }
-
+*/
     // BAUSTELLE AUTH USER - ENDE
 
   ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
   const klickTest = () => {
-    handleLogin(); // nicht verifiziert!!!!
-    //main().then((val) => ($resultatAbfrage = val));
+    //handleLogin(); // nicht verifiziert!!!!
+    main().then((val) => ($resultatAbfrage = val));
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
   ////// BAUSTELLE/
@@ -125,9 +126,10 @@ query ($varJahr: [Int]){
       varJahr: $jahreszahlen //, geht!
     }
     //console.log(variables);
-    await app.currentUser?.refreshCustomData(); // habe ich selbst eingefügt - Quelle Youtube Video Realm,React,MongoDB 
+    //await app.currentUser?.refreshCustomData(); // habe ich selbst eingefügt - Quelle Youtube Video Realm,React,MongoDB 
     const requestHeaders = {        
-        authorization: 'Bearer ' + app.currentUser?.accessToken,
+        //authorization: 'Bearer ' + app.currentUser?.accessToken,
+        authorization: 'Bearer ' + $benutzerAccessToken
           //apiKey: '...',
       }
 

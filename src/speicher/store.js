@@ -37,8 +37,9 @@ export const resultatAbfrage = writable(
 
   
   export const benutzerID = writable("");
-  export const benutzerEmail = writable("");
-  export const benutzerPwd = writable("");
+  export const benutzerAccessToken = writable("");
+  //export const benutzerEmail = writable("");
+  //export const benutzerPwd = writable("");
 
   export const testuserstore = writable(false);
   export const testuser = 'sven@sven.de'
