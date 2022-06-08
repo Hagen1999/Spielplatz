@@ -2,17 +2,20 @@
     /*
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
-    import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
+
     import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
     import Statistik from '../komponenten/Statistik.svelte';
     import Login from '..//komponenten/Login.svelte';
 */
+    import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
+    import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     import LoginComponent from '../komponenten/LoginComponent.svelte';
     import Login from '..//komponenten/Login.svelte';
 
     import Home from "./index.svelte";
     import Filter from "./filter.svelte";
 	import Router, {link} from 'svelte-spa-router';
+
 	const routes = {
 		'/': Home,
 		'/filter': Filter,
@@ -27,6 +30,10 @@
 
 <h1>Testseite</h1>
 <Login/>
+<br/>
+<JahreszahlAuswahl></JahreszahlAuswahl>
+<br/>
+<GraphQlAbfrage></GraphQlAbfrage>
 
 <!-- HTML 
 <a href = "/login"> Logintestseite</a>

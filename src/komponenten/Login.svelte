@@ -1,43 +1,45 @@
 <script>
 
-    //import {benutzerEmail} from '../speicher/store';
-    //import {benutzerPwd} from '../speicher/store';
     import {benutzerID} from '../speicher/store'
     import {benutzerAccessToken} from '../speicher/store'
+    import {benutzerEingeloggt} from '../speicher/store'
     import ButtonLogin from '../komponenten/ButtonLogin.svelte'
     import * as Realm from "realm-web"
+    import Router from 'svelte-spa-router'
+    import { push } from 'svelte-spa-router';
+    import Home from "../routes/index.svelte";
+    import Filter from "../routes/filter.svelte";
+
+    const routes = {
+		'/': Home,
+		'/filter': Filter,
+	};
+
 
     /**
-* @type {string}
-*/
-    let komppwd;
-    /**
-* @type {string}
-*/
+      * @type {string}
+      */
     let kompemail;
-    
-    const speichereLogin = () => {
-        //$benutzerEmail;
-        //$benutzerPwd;
-        //console.log("User-E-Mail: " + $benutzerEmail);
-        //console.log("User-PWD: " + $benutzerPwd);
-        }
+
+    /**
+      * @type {string}
+      */
+    let komppwd;
+
 
     const id = import.meta.env.VITE_APP_ID;
     const config = {id,};
     const app = new Realm.App(config);
 
-    //$: credentials = Realm.Credentials.emailPassword($benutzerEmail, $benutzerPwd);
     $: credentials = Realm.Credentials.emailPassword(kompemail, komppwd);
 
     const handleLogin = async () => {
       try {
-
         const user = await app.logIn(credentials);
 
         $benutzerID = user.id;
-        //const userAccTok = app.currentUser?.accessToken;
-        //const userAccTok2 = user.accessToken;
+        $benutzerEingeloggt = user.isLoggedIn;
+
         console.log(id);
         console.assert(user.id === app.currentUser?.id);
         console.log("User.ID= " + user.id);
@@ -53,7 +55,12 @@
       }
       
     }
-    console.log("Access-Token-Funktion: " + app.currentUser?.accessToken)
+    const weiter = async () => {await push('/filter');}
+
+    $: if ($benutzerEingeloggt) {
+      console.log("Access-Token-Funktion: " + app.currentUser?.accessToken);
+      weiter();
+    }
 
  </script>
 

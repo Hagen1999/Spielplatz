@@ -39,9 +39,8 @@ query ($varJahr: [Int]){
   import {resultatAbfrage} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
   import {benutzerID} from '../speicher/store'
-  import {benutzerAccessToken} from '../speicher/store'
-  //import {benutzerEmail} from '../speicher/store'
-  //import {benutzerPwd} from '../speicher/store'
+  import {benutzerAccessToken} from '../speicher/store' // geht noch nicht!
+
   import * as Realm from "realm-web"
 
   //import {jahreszahlenStat} from '../speicher/store' // temporär deaktiviert
@@ -92,13 +91,34 @@ query ($varJahr: [Int]){
 */
     // BAUSTELLE AUTH USER - ENDE
 
-  ////// BAUSTELLE Aufruf von außen muss noch eingebunden werden
+// Connect to your MongoDB Realm app
+    const config = {id,};
+    const app = new Realm.App(config);
+
+// Gets a valid Realm user access token to authenticate requests
+async function getValidAccessToken() {
+  // Guarantee that there's a logged in user with a valid access token
+  if (!app.currentUser) {
+    // If no user is logged in ...
+                      // SPRINGE AUF DIE LOGIN SEITE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //ALTERNATIV: await app.logIn(Realm.Credentials.emailPassword());
+  } else {
+    // An already logged in user's access token might be stale. To guarantee that the token is
+    // valid, we refresh the user's custom data which also refreshes their access token.
+    console.log("TOKEN-VORHER: "+app.currentUser?.accessToken);
+    await app.currentUser.refreshCustomData();
+    console.log("Refresh des Tokens durchgeführt.")
+    console.log("TOKEN-NACHHER: "+app.currentUser?.accessToken);
+  }
+  return app.currentUser?.accessToken;
+}
+
+
   const klickTest = () => {
-    //handleLogin(); // nicht verifiziert!!!!
+    getValidAccessToken();
     main().then((val) => ($resultatAbfrage = val));
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
-  ////// BAUSTELLE/
 
 
   export const main = async () => {
@@ -128,8 +148,8 @@ query ($varJahr: [Int]){
     //console.log(variables);
     //await app.currentUser?.refreshCustomData(); // habe ich selbst eingefügt - Quelle Youtube Video Realm,React,MongoDB 
     const requestHeaders = {        
-        //authorization: 'Bearer ' + app.currentUser?.accessToken,
-        authorization: 'Bearer ' + $benutzerAccessToken
+        authorization: 'Bearer ' + app.currentUser?.accessToken,
+        //authorization: 'Bearer ' + getValidAccessToken()
           //apiKey: '...',
       }
 
