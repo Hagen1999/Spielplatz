@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { readable, writable } from "svelte/store";
 
 export const datenreihe1 = writable([50,25,10,5,5,5]);// Beispieldaten 1
 export const datenreihe2 = writable([55,20,14,4,6,6]);// Beispieldaten 2
@@ -37,6 +37,7 @@ export const resultatAbfrage = writable(
 
   
   export const benutzerID = writable("");
+  export const benutzerEingeloggt = writable(false);
   export const benutzerAccessToken = writable("");
   //export const benutzerEmail = writable("");
   //export const benutzerPwd = writable("");
