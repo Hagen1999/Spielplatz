@@ -1,9 +1,9 @@
 <script>
 
     import {benutzerID} from '../speicher/store'
-    import {benutzerAccessToken} from '../speicher/store'
     import {benutzerEingeloggt} from '../speicher/store'
     import ButtonLogin from '../komponenten/ButtonLogin.svelte'
+    import { goto } from '$app/navigation';
     import * as Realm from "realm-web"
 
     /**
@@ -46,32 +46,25 @@
       
     }
     const weiter = async () => {
-      console.log("weiter-Funktion getriggert");
-      //load('/filter');
+      //console.log("weiter-Funktion getriggert");
+      goto("/filter");
     }
 
     $: if ($benutzerEingeloggt) {
-      console.log("Access-Token-Funktion: " + app.currentUser?.accessToken);
+      //console.log("Access-Token-Funktion: " + app.currentUser?.accessToken);
       weiter();
     }
 
  </script>
 
 
-
 <slot></slot>
-
 
 
 <h2>MongoDB-Authentifizierung</h2>
 
         <div>E-Mail: <input class="input" type="text" bind:value= {kompemail} /></div>
         <div>Passwort: <input class="input" type="password" bind:value= {komppwd} /></div>
-
-<!--
-        <div>E-Mail: <input class="input" type="text" bind:value= {$benutzerEmail} /></div>
-        <div>Passwort: <input class="input" type="password" bind:value= {$benutzerPwd} /></div>
---->
 
 <ButtonLogin 
     on:LoginSignal={() => console.log("Login-Button-Klick wurde in Login-Komponente empfangen.")} 
