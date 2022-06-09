@@ -5,16 +5,6 @@
     import {benutzerEingeloggt} from '../speicher/store'
     import ButtonLogin from '../komponenten/ButtonLogin.svelte'
     import * as Realm from "realm-web"
-    import Router from 'svelte-spa-router'
-    import { push } from 'svelte-spa-router';
-    import Home from "../routes/index.svelte";
-    import Filter from "../routes/filter.svelte";
-
-    const routes = {
-		'/': Home,
-		'/filter': Filter,
-	};
-
 
     /**
       * @type {string}
@@ -55,7 +45,10 @@
       }
       
     }
-    const weiter = async () => {await push('/filter');}
+    const weiter = async () => {
+      console.log("weiter-Funktion getriggert");
+      //load('/filter');
+    }
 
     $: if ($benutzerEingeloggt) {
       console.log("Access-Token-Funktion: " + app.currentUser?.accessToken);

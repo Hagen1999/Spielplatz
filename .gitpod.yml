@@ -5,7 +5,6 @@ tasks:
       export HMR_HOST=`gp url 3000`
       npm install --save simple-statistics
       npm i svelte-chartjs
-      npm i svelte-spa-router
       npm install realm-web
       npm add graphql-request graphql
       npm run dev

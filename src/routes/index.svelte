@@ -11,16 +11,6 @@
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     import LoginComponent from '../komponenten/LoginComponent.svelte';
     import Login from '..//komponenten/Login.svelte';
-
-    import Home from "./index.svelte";
-    import Filter from "./filter.svelte";
-	import Router, {link} from 'svelte-spa-router';
-
-	const routes = {
-		'/': Home,
-		'/filter': Filter,
-	};
-
     
 
 </script>
@@ -28,7 +18,11 @@
 <svelte:head>
 </svelte:head>
 
-<h1>Testseite</h1>
+<main>
+<h1>Index-Seite</h1>
+
+<a href="/filter">Link Filterseite</a>
+
 <Login/>
 <br/>
 <JahreszahlAuswahl></JahreszahlAuswahl>
@@ -50,3 +44,4 @@
 <br/>
 <Kuchendiagramm></Kuchendiagramm>
 -->
+</main>
