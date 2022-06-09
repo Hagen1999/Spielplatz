@@ -9,8 +9,8 @@
 
     //import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
     //import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
-    import {benutzerID} from '../speicher/store'
-    import {benutzerEingeloggt} from '../speicher/store'
+    //import {benutzerID} from '../speicher/store'
+    //import {benutzerEingeloggt} from '../speicher/store'
     //import LoginComponent from '../komponenten/LoginComponent.svelte';
     //import AnmeldeStatus from '../komponenten/AnmeldeStatus.svelte';
     import Login from '../komponenten/Login.svelte';
@@ -20,13 +20,14 @@
 <svelte:head>
 </svelte:head>
 
-
+<Login/>
+<!-- HTML 
 <h1>Index-Seite</h1>
 <p>Eingeloggt? {$benutzerEingeloggt}</p>
 <p>Benutzer-ID: {$benutzerID}</p>
 <hr>
-<Login/>
-<!-- HTML 
+
+
 <br/>
 <JahreszahlAuswahl></JahreszahlAuswahl>
 <br/>

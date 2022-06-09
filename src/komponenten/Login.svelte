@@ -3,8 +3,10 @@
     import {benutzerID} from '../speicher/store'
     import {benutzerEingeloggt} from '../speicher/store'
     import ButtonLogin from '../komponenten/ButtonLogin.svelte'
-    import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation'
     import * as Realm from "realm-web"
+
+    let errortext ="";
 
     /**
       * @type {string}
@@ -42,6 +44,7 @@
       } 
       catch (e){
         console.error("error log in");
+        errortext = "Login fehlgeschlagen.";
       }
       
     }
@@ -52,6 +55,7 @@
 
     $: if ($benutzerEingeloggt) {
       //console.log("Access-Token-Funktion: " + app.currentUser?.accessToken);
+      errortext = ""
       weiter();
     }
 
@@ -61,7 +65,7 @@
 <slot></slot>
 
 
-<h2>MongoDB-Authentifizierung</h2>
+<h2>Anmeldung (Atlas)</h2>
 
         <div>E-Mail: <input class="input" type="text" bind:value= {kompemail} /></div>
         <div>Passwort: <input class="input" type="password" bind:value= {komppwd} /></div>
@@ -69,3 +73,5 @@
 <ButtonLogin 
     on:LoginSignal={() => console.log("Login-Button-Klick wurde in Login-Komponente empfangen.")} 
     on:LoginSignal={() => handleLogin()}/>
+
+    <div>{errortext}</div>
