@@ -37,9 +37,13 @@ query ($varJahr: [Int]){
 
   import { GraphQLClient, gql } from 'graphql-request'
   import {resultatAbfrage} from '../speicher/store'
+  import {resultatAbfrage2} from '../speicher/store'
   import {jahreszahlen} from '../speicher/store'
   import {benutzerID} from '../speicher/store'
   import {benutzerAccessToken} from '../speicher/store' // geht noch nicht!
+  import {db_name} from '../speicher/store'
+  import {db_alter} from '../speicher/store'
+  import {db_akt_id} from '../speicher/store'
 
   import * as Realm from "realm-web"
 
@@ -117,6 +121,7 @@ async function getValidAccessToken() {
   const klickTest = () => {
     getValidAccessToken();
     main().then((val) => ($resultatAbfrage = val));
+    main2().then((val) => ($resultatAbfrage2 = val));
     console.log('Es wurde der Button geklickt - Effekt auf Funktion in der Komponente GraphQLAbfrage');
   }
 
@@ -160,6 +165,68 @@ async function getValidAccessToken() {
   //$: main().catch((error) => console.error(error));
   //$: main().then((val) => ($resultatAbfrage = val));
 
+
+  export const main2 = async () => {
+    const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
+    const client = new GraphQLClient(endpoint)
+    const query = gql`
+                query {
+                  vftest_interactivedata{
+                    _id
+                    name
+                    hierarchie
+                    alter
+                    orte
+                    }
+                  }
+                `
+    const variables = {
+      //varJahr: $jahreszahlen
+    }
+    const requestHeaders = {        
+        authorization: 'Bearer ' + app.currentUser?.accessToken,
+      }
+
+    const data = await client.request(query, variables, requestHeaders);
+    return data;
+  }
+
+  export const gql_mutation = async () => {
+    const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
+    const client = new GraphQLClient(endpoint)
+    const mutation = gql`
+                mutation ($_id: ObjectId, $name: String, $alter: Long){
+                  updateOneVftest_interactivedatum(set:{
+                    _id : $_id
+                    name: $name
+                    alter: $alter
+                  }){
+                    name
+                    alter
+                    }
+                  }
+                `
+    const variables = {
+      _id: $db_akt_id,
+      name: $db_name,
+      alter: $db_alter
+    }
+    const requestHeaders = {        
+        authorization: 'Bearer ' + app.currentUser?.accessToken,
+      }
+
+    const data = await client.request(mutation, variables, requestHeaders);
+    return data;
+  }
+
+
+  function bereiteMutationVor(/** @type {string} */ id, /** @type {string} */ name, /** @type {number} */ alter){
+      $db_akt_id = id;
+      $db_name = name;
+      $db_alter = alter;
+      gql_mutation;
+    return 
+  }
   </script>
   
   <slot></slot>
@@ -203,9 +270,29 @@ async function getValidAccessToken() {
         <div>Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
         <div>Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
         <br/>
-        <div>Benutzer-ID: {$benutzerID}</div>
+        <!-- <div>Benutzer-ID: {$benutzerID}</div> -->
 
       <br/>
+        <div><li><b>Veränderbare Daten in DB:</b></li>
+            {#each ($resultatAbfrage2.vftest_interactivedata) as userzeile}            
+                  <br/><b>ID: {userzeile._id} 
+                  <br/>Name: <input class="input" type="text" bind:value= {userzeile.name} />
+                  <br/>Alter: <input class="input" type="number" bind:value= {userzeile.alter} />
+                  <br/>Hierarchie: {userzeile.hierarchie}
+                  <br/>Orte: <input class="input" type="text" bind:value= {userzeile.orte} />
+                </b>
+                <br/>
+                <!-- /////
+                <button 
+	                  on:click|preventDefault={() => console.log(userzeile._id)}>Verändern
+                </button>
+                ////-->
+                <button 
+                on:click|preventDefault={() => bereiteMutationVor("62a31bfb1c0c335c200b0976", "einName", 99)}>Verändern 
+            </button>
+                <br/>
+            {/each}
+        </div>
       </div>
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->

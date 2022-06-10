@@ -32,6 +32,19 @@ export const resultatAbfrage = writable(
   }
   );
 
+  export const resultatAbfrage2 = writable(
+    {
+      "vftest_interactivedata": [
+        {
+          "_id": 0,
+          "alter": 0,
+          "name": 0,
+          "hierarchie": 0,
+          "orte": [0]
+        }
+      ]
+    }
+    );
   export const jahreszahlen = writable([0]);
   //export const jahreszahlenStat = writable([2017,2018]); // als Test
 
@@ -41,7 +54,13 @@ export const resultatAbfrage = writable(
   //export const benutzerEmail = writable("");
   //export const benutzerPwd = writable("");
 
+  export const db_name = writable("");
+  export const db_alter = writable(0);
+  export const db_akt_id = writable("");
+
   export const testuserstore = writable(false);
   export const testuser = 'sven@sven.de'
   export const testpass = 'sven'
+
+
 
