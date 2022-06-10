@@ -59,6 +59,18 @@
       weiter();
     }
 
+    const handleLogout = async () => {
+      try {
+
+      return console.log('LOGOUT-Funktion durchgelaufen');;
+      } 
+      catch (e){
+        console.error("error logou");
+        errortext = "Logout fehlgeschlagen.";
+      }
+      
+    }
+
  </script>
 
 
@@ -72,6 +84,6 @@
 
 <ButtonLogin 
     on:LoginSignal={() => console.log("Login-Button-Klick wurde in Login-Komponente empfangen.")} 
-    on:LoginSignal={() => handleLogin()}/>
+    on:LoginSignal={() => handleLogin()}/>   
 
     <div>{errortext}</div>

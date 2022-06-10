@@ -166,8 +166,9 @@ async function getValidAccessToken() {
 
   <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
   <!-- ///////////////////////////// Button "Suche" ////////////////////////////////////////-->
+    <!--
   <h2>GraphQL-Abfrage</h2>
-  <!--
+
     <div> Console.Log {console.log($jahreszahlen)}</div>
     //<div> Console.Log {console.log($jahreszahlenStat)}</div>
     <div> Console.Log {console.log($resultatAbfrage)}</div>
@@ -191,7 +192,7 @@ async function getValidAccessToken() {
       {resultatString}</div>
     <br/>
     -->
-    <div>Benutzer-ID: {$benutzerID}</div>
+
     <h3>Ergebnisse:</h3>
         <div>
             {#each ($resultatAbfrage.abfrageJahr) as jahreszeile}
@@ -202,6 +203,7 @@ async function getValidAccessToken() {
         <div>Das erste Jahr: {$resultatAbfrage.abfrageJahr[0].Jahr}</div>
         <div>Anzahl der Datensätze: {$resultatAbfrage.abfrageJahr.length}</div>
         <br/>
+        <div>Benutzer-ID: {$benutzerID}</div>
 
       <br/>
       </div>
@@ -210,9 +212,11 @@ async function getValidAccessToken() {
 
 
 <style>
+  /*
   .textblock {
       color: darkgreen;
       padding-left: 1rem;
       font-family: Arial, Helvetica, sans-serif;
   }
+  */
 </style>

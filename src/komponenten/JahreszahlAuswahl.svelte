@@ -25,17 +25,16 @@ import { jahreszahlen } from '../speicher/store'
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
 <!-- ///////////////////////// Radio-Buttons & Checboxen /////////////////////////////////-->
-
+<!-- //////////////////////////////////
 <h2>Datenfilter (Jahreszahlauswahl)</h2>
 
-<!-- //////////////////////////////////
 <h3>Radiobuttons: </h3>
 <label><input type=radio bind:group={scoops} name="scoops" value={1901}>1901</label>
 <label><input type=radio bind:group={scoops} name="scoops" value={1902}>1902</label>
 <label><input type=radio bind:group={scoops} name="scoops" value={1903}>1903</label>
 /////////////////////////////////////////////-->
 
-<h3>Checkboxauswahl: </h3>
+<h3>Auswahl: </h3>
 
 {#each menu as flavour}
 	<label>
@@ -44,7 +43,7 @@ import { jahreszahlen } from '../speicher/store'
 	</label>
 {/each}
 
-{#if $jahreszahlen.length === 0}
+{#if $jahreszahlen.length < 1}
 	<p>Bitte auswählen: </p>
 {:else if $jahreszahlen.length > scoops}
 	<p>Can't order more flavours than scoops!</p>

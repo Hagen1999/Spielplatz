@@ -1,11 +1,12 @@
 <script>
-    //import {benutzerID} from '../speicher/store'
+    import {benutzerID} from '../speicher/store'
     import {benutzerEingeloggt} from '../speicher/store'
     import JahreszahlAuswahl from '../komponenten/JahreszahlAuswahl.svelte';
     import GraphQlAbfrage from '../komponenten/GraphQLAbfrage.svelte';
     import NewLogin from '../routes/newLogin.svelte';
     //import ButtonLogout from '../komponenten/ButtonLogout.svelte';
     import LoginStatus from '../komponenten/LoginStatus.svelte';
+    import Menu from '../komponenten/Menu.svelte';
 </script>
 
 
@@ -17,8 +18,9 @@
     <hr>
     -->
     <LoginStatus></LoginStatus>
+    <Menu></Menu>
 
-    <h1>Filterseite</h1>
+    <h1>Filter</h1>
     <br/>
     <JahreszahlAuswahl></JahreszahlAuswahl>
     <br/>
