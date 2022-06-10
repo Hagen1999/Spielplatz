@@ -7,9 +7,9 @@
     import NewLogin from '../routes/newLogin.svelte';
 	//import ButtonLogout from '../komponenten/ButtonLogout.svelte';
     import LoginStatus from '../komponenten/LoginStatus.svelte';
+    import Menu from '../komponenten/Menu.svelte';
 </script>
 
-<h1>Dashboard-Seite</h1>
 
 {#if $benutzerEingeloggt } 
 <!--
@@ -19,8 +19,9 @@
     <hr>
     -->
     <LoginStatus></LoginStatus>
+    <Menu></Menu>
 
-    <h1>Statistik-Seite</h1>
+    <h1>Dashboard</h1>
     <br/>
 	<Eingabeformular></Eingabeformular>
 	<br/>
