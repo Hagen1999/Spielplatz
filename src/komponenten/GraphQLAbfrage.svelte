@@ -191,21 +191,21 @@ async function getValidAccessToken() {
     return data;
   }
 
+  //FUNKTIONIERT:
   export const gql_mutation = async (/** @type {string} */ _id, /** @type {string} */ name, /** @type {number} */ alter) => {
     const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
     const mutation = gql`
-                mutation ($_id: ObjectId, $name: String, $alter: Int){
-                  updateOneVftest_interactivedatum(set:{
-                    _id : $_id
-                    name: $name
-                    alter: $alter
-                  }){
+                mutation ($_id: ObjectId, $name: String, $alter: Int) {
+                  updateOneVftest_interactivedatum(
+                    query: {_id: $_id}
+                    set: {name: $name, alter: $alter}
+                  ) {
                     _id
                     name
                     alter
-                    }
                   }
+                }
                 `
     const variables = {
       _id: $db_akt_id,
@@ -233,6 +233,10 @@ async function getValidAccessToken() {
       gql_mutation($db_akt_id, $db_name, $db_alter );
     return 
   }
+
+
+  // Hier müsste löschen und neu anlegen ergänzt werden.
+  
   </script>
   
   <slot></slot>
