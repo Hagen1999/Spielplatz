@@ -191,6 +191,7 @@ async function getValidAccessToken() {
     return data;
   }
 
+  //FUNKTIONIERT:
   export const gql_mutation = async (/** @type {string} */ _id, /** @type {string} */ name, /** @type {number} */ alter) => {
     const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
