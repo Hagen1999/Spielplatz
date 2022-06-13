@@ -233,6 +233,10 @@ async function getValidAccessToken() {
       gql_mutation($db_akt_id, $db_name, $db_alter );
     return 
   }
+
+
+  // Hier müsste löschen und neu anlegen ergänzt werden.
+  
   </script>
   
   <slot></slot>
