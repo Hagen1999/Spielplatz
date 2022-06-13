@@ -36,9 +36,9 @@ export const resultatAbfrage = writable(
     {
       "vftest_interactivedata": [
         {
-          "_id": 0,
+          "_id": "",
           "alter": 0,
-          "name": 0,
+          "name": "",
           "hierarchie": 0,
           "orte": [0]
         }

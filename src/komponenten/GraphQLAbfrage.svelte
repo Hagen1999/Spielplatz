@@ -191,16 +191,17 @@ async function getValidAccessToken() {
     return data;
   }
 
-  export const gql_mutation = async () => {
+  export const gql_mutation = async (/** @type {string} */ _id, /** @type {string} */ name, /** @type {number} */ alter) => {
     const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
     const mutation = gql`
-                mutation ($_id: ObjectId, $name: String, $alter: Long){
+                mutation ($_id: ObjectId, $name: String, $alter: Int){
                   updateOneVftest_interactivedatum(set:{
                     _id : $_id
                     name: $name
                     alter: $alter
                   }){
+                    _id
                     name
                     alter
                     }
@@ -220,11 +221,16 @@ async function getValidAccessToken() {
   }
 
 
-  function bereiteMutationVor(/** @type {string} */ id, /** @type {string} */ name, /** @type {number} */ alter){
+  /**
+* @param {string} id
+* @param {string} name
+* @param {number} alter
+*/
+  function bereiteMutationVor(id, name, alter){
       $db_akt_id = id;
       $db_name = name;
       $db_alter = alter;
-      gql_mutation;
+      gql_mutation($db_akt_id, $db_name, $db_alter );
     return 
   }
   </script>
@@ -288,7 +294,7 @@ async function getValidAccessToken() {
                 </button>
                 ////-->
                 <button 
-                on:click|preventDefault={() => bereiteMutationVor("62a31bfb1c0c335c200b0976", "einName", 99)}>Verändern 
+                on:click|preventDefault={() => bereiteMutationVor(userzeile._id, userzeile.name, userzeile.alter)}>Verändern 
             </button>
                 <br/>
             {/each}
