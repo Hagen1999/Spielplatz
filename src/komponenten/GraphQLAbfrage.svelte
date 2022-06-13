@@ -94,6 +94,15 @@ query ($varJahr: [Int]){
     }
 */
     // BAUSTELLE AUTH USER - ENDE
+/**
+* @type {string}
+*/
+let input_name;
+/**
+* @type {number}
+*/
+let input_alter;
+
 
 // Connect to your MongoDB Realm app
     const config = {id,};
@@ -243,6 +252,33 @@ async function getValidAccessToken() {
     return data;
   }
 
+  export const gql_neuerEintrag = async (/** @type {string} */ _uid, /** @type {string} */ name, /** @type {number} */ alter) => {
+    const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
+    const client = new GraphQLClient(endpoint)
+    const mutation = gql`
+                  mutation ($name: String, $alter: Int) {
+                    insertOneVftest_interactivedatum(
+                      data: {name: $name, alter: $alter}
+                    ) {
+                      _id
+                      name
+                      alter
+                    }
+                  }
+                `
+    const variables = {
+      _uid: $db_akt_id,
+      name: $db_name,
+      alter: $db_alter
+    }
+    const requestHeaders = {        
+        authorization: 'Bearer ' + app.currentUser?.accessToken,
+      }
+
+    const data = await client.request(mutation, variables, requestHeaders);
+    return data;
+  }
+
 
   /**
 * @param {string} id
@@ -264,6 +300,16 @@ async function getValidAccessToken() {
       $db_akt_id = id;
       gql_loeschen($db_akt_id);
     return 
+  }
+
+  /**
+* @param {string} name
+* @param {number} alter
+*/
+  function bereiteSpeichernVor(name, alter){
+    $db_name = name;
+    $db_alter = alter;
+    gql_neuerEintrag($benutzerID, $db_name, $db_alter);
   }
 
   // Hier müsste löschen und neu anlegen ergänzt werden.
@@ -338,6 +384,15 @@ async function getValidAccessToken() {
             {/each}
         </div>
       </div>
+    <h2>Neuer Datensatz</h2>
+    <form>
+          <div>Name: <input type="text" bind:value= {input_name} /></div>
+          <div>Alter: <input type="number" bind:value= {input_alter} /></div>
+        <button 
+	          on:click|preventDefault={() => bereiteSpeichernVor(input_name, input_alter)}>Speichern
+        </button>
+    </form>
+    <br/>
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
 
