@@ -252,22 +252,23 @@ async function getValidAccessToken() {
     return data;
   }
 
-  export const gql_neuerEintrag = async (/** @type {string} */ _uid, /** @type {string} */ name, /** @type {number} */ alter) => {
+  export const gql_neuerEintrag = async (/** @type {string} */ uid, /** @type {string} */ name, /** @type {number} */ alter) => {
     const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
     const mutation = gql`
-                  mutation ($name: String, $alter: Int) {
-                    insertOneVftest_interactivedatum(
-                      data: {name: $name, alter: $alter}
-                    ) {
-                      _id
-                      name
-                      alter
-                    }
+    mutation ($uid: ObjectId, $name: String, $alter: Int) {
+                  insertOneVftest_interactivedatum(
+                    data: {uid: $uid, name: $name, alter: $alter}
+                  ) {
+                    _id
+                    uid
+                    name
+                    alter
                   }
+                }
                 `
     const variables = {
-      _uid: $db_akt_id,
+      uid: $benutzerID,
       name: $db_name,
       alter: $db_alter
     }
@@ -309,6 +310,7 @@ async function getValidAccessToken() {
   function bereiteSpeichernVor(name, alter){
     $db_name = name;
     $db_alter = alter;
+    $benutzerID = $benutzerID;
     gql_neuerEintrag($benutzerID, $db_name, $db_alter);
   }
 
