@@ -220,6 +220,29 @@ async function getValidAccessToken() {
     return data;
   }
 
+  export const gql_loeschen = (/** @type {string} */ _id) => {
+    const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
+    const client = new GraphQLClient(endpoint)
+    const mutation = gql`
+                  mutation ($_id: ObjectId) {
+                    deleteOneVftest_interactivedatum(
+                      query: {_id: $_id}
+                    ) {
+                      _id
+                    }
+                  }
+                `
+    const variables = {
+      _id: $db_akt_id
+    }
+    const requestHeaders = {        
+        authorization: 'Bearer ' + app.currentUser?.accessToken,
+      }
+
+    const data = client.request(mutation, variables, requestHeaders);
+    return data;
+  }
+
 
   /**
 * @param {string} id
@@ -234,6 +257,14 @@ async function getValidAccessToken() {
     return 
   }
 
+  /**
+* @param {string} id
+*/
+  function bereiteLoeschenVor(id){
+      $db_akt_id = id;
+      gql_loeschen($db_akt_id);
+    return 
+  }
 
   // Hier müsste löschen und neu anlegen ergänzt werden.
   
@@ -298,8 +329,11 @@ async function getValidAccessToken() {
                 </button>
                 ////-->
                 <button 
-                on:click|preventDefault={() => bereiteMutationVor(userzeile._id, userzeile.name, userzeile.alter)}>Verändern 
-            </button>
+                 on:click|preventDefault={() => bereiteMutationVor(userzeile._id, userzeile.name, userzeile.alter)}>Verändern 
+                </button>
+                <button 
+                  on:click|preventDefault={() => bereiteLoeschenVor(userzeile._id)}>Löschen
+                </button>
                 <br/>
             {/each}
         </div>
