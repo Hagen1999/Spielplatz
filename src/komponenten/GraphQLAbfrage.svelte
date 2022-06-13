@@ -195,12 +195,13 @@ async function getValidAccessToken() {
     const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
     const mutation = gql`
-                mutation ($_id: ObjectId, $name: String, $alter: Long){
+                mutation ($_id: ObjectId, $name: String, $alter: Int){
                   updateOneVftest_interactivedatum(set:{
                     _id : $_id
                     name: $name
                     alter: $alter
                   }){
+                    _id
                     name
                     alter
                     }
@@ -229,7 +230,7 @@ async function getValidAccessToken() {
       $db_akt_id = id;
       $db_name = name;
       $db_alter = alter;
-      gql_mutation($db_akt_id, $db_name );
+      gql_mutation($db_akt_id, $db_name, $db_alter );
     return 
   }
   </script>
@@ -293,7 +294,7 @@ async function getValidAccessToken() {
                 </button>
                 ////-->
                 <button 
-                on:click|preventDefault={() => bereiteMutationVor("62a31bfb1c0c335c200b0976", "einName", 99)}>Verändern 
+                on:click|preventDefault={() => bereiteMutationVor(userzeile._id, userzeile.name, userzeile.alter)}>Verändern 
             </button>
                 <br/>
             {/each}
