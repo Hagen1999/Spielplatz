@@ -256,7 +256,7 @@ async function getValidAccessToken() {
     const endpoint = SVSENVVAR_O // ENV Variable in Gitpod MUSS vor dem DEPLOY verändert werden!!
     const client = new GraphQLClient(endpoint)
     const mutation = gql`
-    mutation ($uid: ObjectId, $name: String, $alter: Int) {
+    mutation ($uid: String, $name: String, $alter: Int) {
                   insertOneVftest_interactivedatum(
                     data: {uid: $uid, name: $name, alter: $alter}
                   ) {
