@@ -1,6 +1,7 @@
 <script>
     //import {benutzerID} from '../speicher/store'
     import {benutzerEingeloggt} from '../speicher/store'
+    import {datenreihe3} from '../speicher/store'
     import Kuchendiagramm from '../komponenten/Kuchendiagramm.svelte';
     import Eingabeformular from '../komponenten/Eingabeformular.svelte';
     import Statistik from '../komponenten/Statistik.svelte';
@@ -8,6 +9,11 @@
 	//import ButtonLogout from '../komponenten/ButtonLogout.svelte';
     import LoginStatus from '../komponenten/LoginStatus.svelte';
     import Menu from '../komponenten/Menu.svelte';
+    import * as ss from 'simple-statistics'
+
+    $: dr3 = $datenreihe3;
+    $: summe_dr3 = ss.sum(dr3);
+
 </script>
 
 
@@ -25,9 +31,11 @@
     <br/>
 	<Eingabeformular></Eingabeformular>
 	<br/>
-	<Statistik></Statistik>
-	<br/>
-	<Kuchendiagramm></Kuchendiagramm>
+    {#if summe_dr3 > 0 }
+        <Statistik></Statistik>
+        <br/>
+        <Kuchendiagramm></Kuchendiagramm>
+    {/if}
     <br/>
     <hr>
 {:else}
