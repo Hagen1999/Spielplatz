@@ -1,0 +1,33 @@
+body {
+    background: lightgray;
+    margin: 0;
+}
+
+h1, h2, h3, h4, a, p, li {
+    color: midnightblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+}
+
+h2, h3 {
+    background-color: lightblue;
+  }
+
+#textinput{
+    color: midnightblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+}
+
+.input{
+    border-color: brown;
+    border: 10;
+    width: 50%;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }

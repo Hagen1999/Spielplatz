@@ -15,12 +15,17 @@
     //import AnmeldeStatus from '../komponenten/AnmeldeStatus.svelte';
     import Login from '../komponenten/Login.svelte';
 
+  
+
 </script>
 
 <svelte:head>
 </svelte:head>
+<slot></slot>
 
 <Login/>
+
+
 <!-- HTML 
 <h1>Index-Seite</h1>
 <p>Eingeloggt? {$benutzerEingeloggt}</p>
