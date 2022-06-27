@@ -11,5 +11,6 @@
 </script>
 
 <button 
+	class="btn"
 	on:click|preventDefault = {handleLoginClick}>Login
 </button>

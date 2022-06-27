@@ -79,8 +79,8 @@
 
 <h2>Anmeldung (Atlas)</h2>
 <div id="textinput">
-        <div>E-Mail: <input class="input" type="text" bind:value= {kompemail} /></div>
-        <div>Passwort: <input class="input" type="password" bind:value= {komppwd} /></div>
+        <input class="input input-bordered w-full max-w-xs" placeholder="E-Mail" type="text" bind:value= {kompemail} />
+        <input class="input input-bordered w-full max-w-xs" placeholder="Passwort" type="password" bind:value= {komppwd} />
 </div>
 <ButtonLogin 
     on:LoginSignal={() => console.log("Login-Button-Klick wurde in Login-Komponente empfangen.")} 

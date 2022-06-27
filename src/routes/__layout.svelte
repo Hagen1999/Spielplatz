@@ -15,8 +15,8 @@
     <slot></slot>
 </main>
 
-<footer>
-    <h3>Testseiten-Footer</h3>
+<footer class="footer footer-center p-4 bg-base-300 text-base-content">
+    <p>Testseiten-Footer</p>
 </footer>
 
 
