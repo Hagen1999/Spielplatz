@@ -8,6 +8,7 @@ tasks:
       npm install realm-web
       npm add graphql-request graphql
       npm install -D tailwindcss postcss autoprefixer svelte-preprocess
+      npm i daisyui
       npm run dev
 
 ports:
