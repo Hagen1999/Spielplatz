@@ -7,6 +7,7 @@ tasks:
       npm i svelte-chartjs
       npm install realm-web
       npm add graphql-request graphql
+      npm install -D tailwindcss postcss autoprefixer svelte-preprocess
       npm run dev
 
 ports:
