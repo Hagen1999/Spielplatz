@@ -5,11 +5,13 @@
 
 
 <header>
-    <h2>Testseiten-Überschrift</h2>
+    <h2>Testseiten-Header</h2>
 </header>
 
 <main>
-    <div id="grad">Ein toller Farbverlauf</div>
+  <!--  
+  <div id="grad">Ein toller Farbverlauf</div>
+  -->
     <slot></slot>
 </main>
 
@@ -19,6 +21,7 @@
 
 
 <style>
+  /*
 header, footer {
   max-width: 960px;
   display: flex;
@@ -42,5 +45,7 @@ main {
   font-style: italic;
   color: blue;
 }
+*/
+
 
 </style>

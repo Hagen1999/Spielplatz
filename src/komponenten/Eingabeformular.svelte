@@ -39,9 +39,12 @@
     <br/>
 
 <style>
+    /*
         .input {
             color: darkblue;
             padding-left: 1em;
             font-family: Arial, Helvetica, sans-serif;
         }
+    */
+
 </style>
