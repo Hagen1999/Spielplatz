@@ -57,9 +57,11 @@
 </div>
 
 <style>
+    /*
     .textblock {
         color: rgb(5, 0, 100);
         padding-left: 1rem;
         font-family: Arial, Helvetica, sans-serif;
     }
+    */
 </style>

@@ -1,6 +1,7 @@
 <script>
     import LoginStatus from '../komponenten/LoginStatus.svelte';
 </script>
+
 <LoginStatus></LoginStatus>
 
 <h1>Logout-Seite</h1>

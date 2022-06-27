@@ -27,6 +27,8 @@ vscode:
 
     - fivethree.vscode-svelte-snippets
 
+    - bradlc.vscode-tailwindcss
+
 github:
   prebuilds:
     master: true
