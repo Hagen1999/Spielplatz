@@ -412,7 +412,6 @@ async function getValidAccessToken() {
       on:click|preventDefault={() => mdbServerFunc()}> Serveranfrage
     </button>
     <p>Server-Statistik: {$mdbss1}</p>
-  
     </div>
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
