@@ -44,6 +44,7 @@ query ($varJahr: [Int]){
   import {db_name} from '../speicher/store'
   import {db_alter} from '../speicher/store'
   import {db_akt_id} from '../speicher/store'
+  import {mdbss1} from '../speicher/store'
 
   import * as Realm from "realm-web"
 
@@ -316,6 +317,17 @@ async function getValidAccessToken() {
 
   // Hier müsste löschen und neu anlegen ergänzt werden.
   
+
+  async function mdbServerFunc() {
+    const functionName = "simpleStatTest";
+    const args = [[2, 3, 1000, 2000]];
+    const result = await app.currentUser?.callFunction(functionName, ...args);
+    $mdbss1 = result;
+    console.log("SimpleStatisticsServer: " + result);
+    console.log("SimpleStatisticsServerAntwortKonsole: " + $mdbss1);
+    //return result;
+  }
+
   </script>
   
   <slot></slot>
@@ -395,6 +407,13 @@ async function getValidAccessToken() {
         </button>
     </form>
     <br/>
+    <div>
+      <button 
+      on:click|preventDefault={() => mdbServerFunc()}> Serveranfrage
+    </button>
+    <p>Server-Statistik: {$mdbss1}</p>
+  
+    </div>
 
 <!-- ////////////////////////////////// HTML /////////////////////////////////////////////-->
 

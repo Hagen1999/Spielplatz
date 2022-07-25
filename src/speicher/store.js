@@ -62,5 +62,7 @@ export const resultatAbfrage = writable(
   export const testuser = 'sven@sven.de'
   export const testpass = 'sven'
 
+  export const mdbss1 = writable(0);
+
 
 
