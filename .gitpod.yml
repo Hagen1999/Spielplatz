@@ -29,6 +29,8 @@ vscode:
 
     - bradlc.vscode-tailwindcss
 
+    - mongodb.mongodb-vscode
+
 github:
   prebuilds:
     master: true
